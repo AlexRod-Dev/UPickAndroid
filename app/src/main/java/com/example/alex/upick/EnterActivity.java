@@ -33,8 +33,8 @@ public class EnterActivity extends AppCompatActivity {
         adapter = new ViewPagerAdapter(establishmentList,EnterActivity.this);
 
         viewPager.setAdapter(adapter);
-        viewPager.setPadding(210,0,210,0);
-        viewPager.setCurrentItem((int) Math.round(establishmentList.size()/2));
+        viewPager.setPadding(180,0,180,0);
+        viewPager.setCurrentItem(Math.round(establishmentList.size()/2));
 
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
