@@ -2,37 +2,87 @@ package com.example.alex.upick;
 
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.alex.upick.Adapters.ViewPagerAdapter;
+import com.example.alex.upick.Models.Establishment;
+
+import java.util.ArrayList;
+
 public class EnterActivity extends AppCompatActivity {
-    Button btn;
+    ViewPager viewPager;
+    ArrayList<Establishment> establishmentList = new ArrayList<>();
+    ViewPagerAdapter adapter;
     Intent i;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter);
         getSupportActionBar().setTitle("Enter");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         init();
+        createList();
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        adapter = new ViewPagerAdapter(establishmentList,EnterActivity.this);
+
+        viewPager.setAdapter(adapter);
+        viewPager.setPadding(210,0,210,0);
+        viewPager.setCurrentItem((int) Math.round(establishmentList.size()/2));
+
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onClick(View v) {
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-                FragmentManager fm = getSupportFragmentManager();
-                EstablishmentDialogFragment edf = new EstablishmentDialogFragment();
-                edf.show(fm,"TAG");
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+
+                //TENTAR MUDAR COR DO PAGER ATUAL
+                //TENTAR FAZER SCROLL INFINITO
+
+                //View view = viewPager.getFocusedChild();
+                //
+                //
+                // CardView card = view.findViewById(R.id.cardView);
+
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
             }
         });
 
+    }
 
+    public void clickedCard(int position){
+        FragmentManager fm = getSupportFragmentManager();
+        EstablishmentDialogFragment edf = new EstablishmentDialogFragment();
+        edf.show(fm,"TAG");
+        //ABRIR DIALOG AQUI
+    }
+
+    private void createList() {
+        establishmentList.add(new Establishment(R.drawable.coreto,"CoretoBar"));
+        establishmentList.add(new Establishment(R.drawable.coreto,"Nicole"));
+        establishmentList.add(new Establishment(R.drawable.coreto,"Décadas"));
+        establishmentList.add(new Establishment(R.drawable.coreto,"ComoAssim"));
+        establishmentList.add(new Establishment(R.drawable.coreto,"Bago Doce"));
+        establishmentList.add(new Establishment(R.drawable.coreto,"Desigual"));
+        establishmentList.add(new Establishment(R.drawable.coreto,"Flamingo"));
     }
 
     private void init() {
-    btn = findViewById(R.id.btn_coming);
+
+   viewPager = findViewById(R.id.establishment_viewpager);
     }
 }

@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher" />
+        app:srcCompat="@drawable/coreto" />
 
     <TextView
         android:id="@+id/lb_nome"
@@ -29,9 +29,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="Establishment Name"
+        android:text="Coreto Bar"
         android:textColor="@color/colorBackground"
-        android:textSize="18sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_establishment" />
@@ -55,17 +55,14 @@
 
     <EditText
         android:id="@+id/txt_token"
-        android:layout_width="320dp"
-        android:layout_height="40dp"
+        style="@style/design_edittext"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="3dp"
         android:layout_marginRight="3dp"
-        android:background="@color/colorWhite"
-        android:ems="10"
-        android:inputType="text"
-        android:textColor="@color/colorBackground"
+        android:background="@xml/design_edittext"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.375"
         app:layout_constraintStart_toStartOf="parent"

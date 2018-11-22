@@ -2,16 +2,17 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context=".MenuActivity">
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btn_enter"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:adjustViewBounds="true"
+        android:alpha="0.8"
         android:cropToPadding="false"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@+id/btn_favorites"
@@ -21,10 +22,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/img_menu_enter" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btn_favorites"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:alpha="0.8"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@+id/btn_configs"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,10 +35,11 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_enter"
         app:srcCompat="@drawable/img_menu_favorites" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btn_configs"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:alpha="0.8"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@+id/btn_about"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,10 +48,11 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_favorites"
         app:srcCompat="@drawable/img_menu_configurations" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btn_about"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:alpha="0.8"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,4 +60,64 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_configs"
         app:srcCompat="@drawable/img_menu_about" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="16dp"
+        android:text="Enter"
+        android:textColor="@color/colorWhite"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_enter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_enter"
+        app:layout_constraintVertical_bias="0.7" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="104dp"
+        android:text="Favorites"
+        android:textColor="@color/colorWhite"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_favorites"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_enter"
+        app:layout_constraintVertical_bias="0.57" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="88dp"
+        android:text="Configurations"
+        android:textColor="@color/colorWhite"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_configs"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_favorites"
+        app:layout_constraintVertical_bias="0.52" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="92dp"
+        android:text="About"
+        android:textColor="@color/colorWhite"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_about"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_configs"
+        app:layout_constraintVertical_bias="0.59000003" />
 </android.support.constraint.ConstraintLayout>

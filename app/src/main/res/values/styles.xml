@@ -8,4 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+
+        <style name="design_edittext">
+            <item name="android:layout_width">285dp</item>
+            <item name="android:layout_height">50dp</item>
+            <item name="android:textSize">18sp</item>
+            <item name="android:textColor">@color/colorBackground</item>
+        </style>
+
+
 </resources>

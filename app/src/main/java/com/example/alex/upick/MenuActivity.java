@@ -5,9 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 public class MenuActivity extends AppCompatActivity {
-    ImageButton btnEnter,btnFav,btnConfig,btnAbout;
+    ImageView btnEnter,btnFav,btnConfig,btnAbout;
     Intent i;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,14 @@ public class MenuActivity extends AppCompatActivity {
                 i = new Intent(MenuActivity.this,EnterActivity.class);
                 startActivity(i);
 
+            }
+        });
+
+        btnFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                i = new Intent(MenuActivity.this,FavoritesActivity.class);
+                startActivity(i);
             }
         });
 

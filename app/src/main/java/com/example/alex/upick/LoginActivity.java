@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 i = new Intent(LoginActivity.this,RegisterActivity.class);
                 startActivity(i);
-                finish();
+
             }
         });
 
@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 i = new Intent(LoginActivity.this,MenuActivity.class);
                 startActivity(i);
-                finish();
+
             }
         });
 

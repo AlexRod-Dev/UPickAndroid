@@ -2,15 +2,106 @@ package com.example.alex.upick;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 
 public class AboutActivity extends AppCompatActivity {
+
+    CardView cardAbout,cardInstructions,cardManual;
+    TextView txtAbout,txtInstructions,txtManual;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
         getSupportActionBar().setTitle("About");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
+        init();
+
+
+
+
+        cardAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(!txtAbout.isShown()){
+                    Animation a = AnimationUtils.loadAnimation(AboutActivity.this, R.anim.slide_down);
+                    a.setDuration(500);
+                    if(a != null) {
+                        a.reset();
+
+                        if (txtAbout != null) {
+
+                            txtAbout.clearAnimation();
+                            txtAbout.startAnimation(a);
+                        }
+                    }
+                }
+
+                txtAbout.setVisibility( txtAbout.isShown() ? View.GONE : View.VISIBLE );
+
+            }
+        });
+
+        cardInstructions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(!txtInstructions.isShown()){
+                    Animation a = AnimationUtils.loadAnimation(AboutActivity.this, R.anim.slide_down);
+                    a.setDuration(500);
+                    if(a != null) {
+                        a.reset();
+
+                        if (txtInstructions != null) {
+
+                            txtInstructions.clearAnimation();
+                            txtInstructions.startAnimation(a);
+                        }
+                    }
+                }
+
+                txtInstructions.setVisibility( txtInstructions.isShown() ? View.GONE : View.VISIBLE );
+
+            }
+        });
+
+        cardManual.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(!txtManual.isShown()){
+                    Animation a = AnimationUtils.loadAnimation(AboutActivity.this, R.anim.slide_down);
+                    a.setDuration(500);
+                    if(a != null) {
+                        a.reset();
+
+                        if (txtManual != null) {
+
+                            txtManual.clearAnimation();
+                            txtManual.startAnimation(a);
+                        }
+                    }
+                }
+
+                txtManual.setVisibility( txtManual.isShown() ? View.GONE : View.VISIBLE );
+
+            }
+        });
+    }
+
+    private void init() {
+        cardAbout = findViewById(R.id.card_about);
+        cardInstructions = findViewById(R.id.card_instructions);
+        cardManual = findViewById(R.id.card_manual);
+         txtAbout = findViewById(R.id.txt_about);
+         txtInstructions = findViewById(R.id.txt_instructions);
+         txtManual = findViewById(R.id.txt_manual);
     }
 }
