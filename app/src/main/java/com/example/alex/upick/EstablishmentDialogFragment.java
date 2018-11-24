@@ -25,7 +25,7 @@ public class EstablishmentDialogFragment extends DialogFragment {
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(),EstablishmentActivity.class);
                 startActivity(i);
-                
+                getActivity().finish();
             }
         });
 

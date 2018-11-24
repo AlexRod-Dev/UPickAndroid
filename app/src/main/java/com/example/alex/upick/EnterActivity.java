@@ -68,7 +68,6 @@ public class EnterActivity extends AppCompatActivity {
         FragmentManager fm = getSupportFragmentManager();
         EstablishmentDialogFragment edf = new EstablishmentDialogFragment();
         edf.show(fm,"TAG");
-        //ABRIR DIALOG AQUI
     }
 
     private void createList() {
@@ -82,7 +81,6 @@ public class EnterActivity extends AppCompatActivity {
     }
 
     private void init() {
-
-   viewPager = findViewById(R.id.establishment_viewpager);
+        viewPager = findViewById(R.id.establishment_viewpager);
     }
 }
