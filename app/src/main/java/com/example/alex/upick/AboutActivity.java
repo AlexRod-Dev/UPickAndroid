@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 public class AboutActivity extends AppCompatActivity {
 
-    CardView cardAbout,cardInstructions,cardManual;
-    TextView txtAbout,txtInstructions,txtManual;
+    CardView cardAbout,cardInstructions;
+    TextView txtAbout,txtInstructions;
 
 
     @Override
@@ -23,9 +23,6 @@ public class AboutActivity extends AppCompatActivity {
 
         init();
 
-
-
-
         cardAbout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,6 +30,8 @@ public class AboutActivity extends AppCompatActivity {
                 if(!txtAbout.isShown()){
                     Animation a = AnimationUtils.loadAnimation(AboutActivity.this, R.anim.slide_down);
                     a.setDuration(500);
+                    txtInstructions.setVisibility(View.GONE);
+
                     if(a != null) {
                         a.reset();
 
@@ -56,6 +55,7 @@ public class AboutActivity extends AppCompatActivity {
                 if(!txtInstructions.isShown()){
                     Animation a = AnimationUtils.loadAnimation(AboutActivity.this, R.anim.slide_down);
                     a.setDuration(500);
+                    txtAbout.setVisibility(View.GONE);
                     if(a != null) {
                         a.reset();
 
@@ -71,37 +71,12 @@ public class AboutActivity extends AppCompatActivity {
 
             }
         });
-
-        cardManual.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(!txtManual.isShown()){
-                    Animation a = AnimationUtils.loadAnimation(AboutActivity.this, R.anim.slide_down);
-                    a.setDuration(500);
-                    if(a != null) {
-                        a.reset();
-
-                        if (txtManual != null) {
-
-                            txtManual.clearAnimation();
-                            txtManual.startAnimation(a);
-                        }
-                    }
-                }
-
-                txtManual.setVisibility( txtManual.isShown() ? View.GONE : View.VISIBLE );
-
-            }
-        });
     }
 
     private void init() {
         cardAbout = findViewById(R.id.card_about);
         cardInstructions = findViewById(R.id.card_instructions);
-        cardManual = findViewById(R.id.card_manual);
-         txtAbout = findViewById(R.id.txt_about);
-         txtInstructions = findViewById(R.id.txt_instructions);
-         txtManual = findViewById(R.id.txt_manual);
+        txtAbout = findViewById(R.id.txt_about);
+        txtInstructions = findViewById(R.id.txt_instructions);
     }
 }
