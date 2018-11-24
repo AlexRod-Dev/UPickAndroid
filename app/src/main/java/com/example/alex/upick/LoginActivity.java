@@ -43,7 +43,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private void init() {
 
-    txtRegister = findViewById(R.id.lb_register);
-    btnLogin = findViewById(R.id.btn_register);
+        txtRegister = findViewById(R.id.lb_register);
+        btnLogin = findViewById(R.id.btn_register);
+
     }
 }

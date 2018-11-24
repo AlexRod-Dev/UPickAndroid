@@ -11,8 +11,6 @@ import android.widget.Button;
 
 public class EstablishmentDialogFragment extends DialogFragment {
 
-
-
     @Override
     public View onCreateView(LayoutInflater li, ViewGroup vg, Bundle b){
 
@@ -29,6 +27,7 @@ public class EstablishmentDialogFragment extends DialogFragment {
             }
         });
 
-return view;
+        return view;
+
     }
 }
