@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 i = new Intent(LoginActivity.this,MenuActivity.class);
                 startActivity(i);
-
+                finish();
             }
         });
 

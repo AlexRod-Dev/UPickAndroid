@@ -29,6 +29,6 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void init() {
-    txtLogin = findViewById(R.id.lb_login);
+        txtLogin = findViewById(R.id.lb_login);
     }
 }
