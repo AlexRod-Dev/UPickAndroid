@@ -32,9 +32,18 @@ public class EnterActivity extends AppCompatActivity {
 
         adapter = new ViewPagerAdapter(establishmentList,EnterActivity.this);
 
+
         viewPager.setAdapter(adapter);
-        viewPager.setPadding(180,0,180,0);
+
+        float scale = getResources().getDisplayMetrics().density;
+        int leftDpAsPixels = (int) (67*scale + 0.5f);
+        int rightDpAsPixels = (int) (45*scale + 0.5f);
+
+        viewPager.setPadding(leftDpAsPixels,0,rightDpAsPixels,0);
+
+        viewPager.setClipToPadding (false);
         viewPager.setCurrentItem(Math.round(establishmentList.size()/2));
+
 
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
