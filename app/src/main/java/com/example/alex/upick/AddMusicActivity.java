@@ -36,8 +36,7 @@ public class AddMusicActivity extends AppCompatActivity {
     }
 
     private void init() {
-    recyclerFavList = findViewById(R.id.recycler_fav_list);
-
+        recyclerFavList = findViewById(R.id.recycler_fav_list);
     }
 
     private void createMusics() {
