@@ -3,8 +3,10 @@ package com.example.alex.upick;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
 public class MenuActivity extends AppCompatActivity {
@@ -58,10 +60,31 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     private void init() {
-    btnEnter = findViewById(R.id.btn_enter);
-    btnConfig = findViewById(R.id.btn_configs);
-    btnFav = findViewById(R.id.btn_favorites);
-    btnAbout = findViewById(R.id.btn_about);
 
+        btnEnter = findViewById(R.id.btn_enter);
+        btnConfig = findViewById(R.id.btn_configs);
+        btnFav = findViewById(R.id.btn_favorites);
+        btnAbout = findViewById(R.id.btn_about);
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.exit_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.menu_exit:
+                i = new Intent(MenuActivity.this,LoginActivity.class);
+                startActivity(i);
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

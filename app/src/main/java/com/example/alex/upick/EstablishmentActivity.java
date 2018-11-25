@@ -84,7 +84,7 @@ public class EstablishmentActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.establishment_menu, menu);
+        inflater.inflate(R.menu.exit_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -92,9 +92,10 @@ public class EstablishmentActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.establishment_exit:
+            case R.id.menu_exit:
                 i = new Intent(EstablishmentActivity.this,MenuActivity.class);
                 startActivity(i);
+                finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);
