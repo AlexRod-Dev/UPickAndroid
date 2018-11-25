@@ -1,4 +1,4 @@
-package com.example.alex.upick;
+package com.example.alex.upick.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.alex.upick.R;
 
 public class LoginActivity extends AppCompatActivity {
 

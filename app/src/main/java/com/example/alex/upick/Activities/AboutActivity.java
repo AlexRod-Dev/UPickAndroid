@@ -1,4 +1,4 @@
-package com.example.alex.upick;
+package com.example.alex.upick.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
+
+import com.example.alex.upick.R;
 
 public class AboutActivity extends AppCompatActivity {
 

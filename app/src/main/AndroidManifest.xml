@@ -9,10 +9,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MenuActivity" />
-        <activity android:name=".LoginActivity"
+            android:name=".Activities.MenuActivity" />
+        <activity android:name=".Activities.LoginActivity"
             android:launchMode="singleTask"/>
-        <activity android:name=".SplashActivity">
+        <activity android:name=".Activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,24 +20,24 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RegisterActivity"
-            android:parentActivityName=".LoginActivity" />
+            android:name=".Activities.RegisterActivity"
+            android:parentActivityName=".Activities.LoginActivity" />
         <activity
-            android:name=".EnterActivity"
-            android:parentActivityName=".MenuActivity" />
+            android:name=".Activities.EnterActivity"
+            android:parentActivityName=".Activities.MenuActivity" />
         <activity
-            android:name=".EstablishmentActivity" />
+            android:name=".Activities.EstablishmentActivity" />
         <activity
-            android:name=".ConfigurationsActivity"
-            android:parentActivityName=".MenuActivity" />
+            android:name=".Activities.ConfigurationsActivity"
+            android:parentActivityName=".Activities.MenuActivity" />
         <activity
-            android:name=".AboutActivity"
-            android:parentActivityName=".MenuActivity" />
+            android:name=".Activities.AboutActivity"
+            android:parentActivityName=".Activities.MenuActivity" />
         <activity
-            android:name=".AddMusicActivity"
-            android:parentActivityName=".EstablishmentActivity" />
-        <activity android:name=".FavoritesActivity"
-                  android:parentActivityName=".MenuActivity"></activity>
+            android:name=".Activities.AddMusicActivity"
+            android:parentActivityName=".Activities.EstablishmentActivity" />
+        <activity android:name=".Activities.FavoritesActivity"
+                  android:parentActivityName=".Activities.MenuActivity"></activity>
     </application>
 
 </manifest>

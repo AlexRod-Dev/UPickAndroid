@@ -1,4 +1,4 @@
-package com.example.alex.upick;
+package com.example.alex.upick.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.example.alex.upick.R;
 
 public class MenuActivity extends AppCompatActivity {
     ImageView btnEnter,btnFav,btnConfig,btnAbout;

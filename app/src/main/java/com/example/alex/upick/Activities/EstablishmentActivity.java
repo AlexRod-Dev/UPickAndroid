@@ -1,4 +1,4 @@
-package com.example.alex.upick;
+package com.example.alex.upick.Activities;
 
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.alex.upick.Adapters.RecyclerListMusicAdapter;
 import com.example.alex.upick.Models.Music;
+import com.example.alex.upick.R;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.alex.upick;
+package com.example.alex.upick.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.example.alex.upick.Activities.EstablishmentActivity;
+import com.example.alex.upick.R;
 
 
 public class EstablishmentDialogFragment extends DialogFragment {

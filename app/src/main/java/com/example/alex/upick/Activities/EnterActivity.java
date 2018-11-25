@@ -1,4 +1,4 @@
-package com.example.alex.upick;
+package com.example.alex.upick.Activities;
 
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.alex.upick.Adapters.ViewPagerAdapter;
+import com.example.alex.upick.Fragments.EstablishmentDialogFragment;
 import com.example.alex.upick.Models.Establishment;
+import com.example.alex.upick.R;
 
 import java.util.ArrayList;
 

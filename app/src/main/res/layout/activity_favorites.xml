@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:focusableInTouchMode="true"
     android:background="@color/colorBackground"
-    tools:context=".FavoritesActivity">
+    tools:context=".Activities.FavoritesActivity">
 
 
     <android.support.v7.widget.CardView

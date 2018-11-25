@@ -1,4 +1,4 @@
-package com.example.alex.upick;
+package com.example.alex.upick.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.alex.upick.Adapters.RecyclerListMusicAdapter;
 import com.example.alex.upick.Models.Music;
+import com.example.alex.upick.R;
 
 import java.util.ArrayList;
 import java.util.List;

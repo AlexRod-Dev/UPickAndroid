@@ -8,7 +8,7 @@
     android:background="@color/colorBackground"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".RegisterActivity">
+    tools:context=".Activities.RegisterActivity">
 
     <ImageView
         android:id="@+id/img_logo"

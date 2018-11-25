@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.alex.upick.EnterActivity;
+import com.example.alex.upick.Activities.EnterActivity;
 import com.example.alex.upick.Models.Establishment;
 import com.example.alex.upick.R;
 

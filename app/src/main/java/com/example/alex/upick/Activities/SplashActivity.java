@@ -1,13 +1,14 @@
-package com.example.alex.upick;
+package com.example.alex.upick.Activities;
 
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+
+import com.example.alex.upick.R;
 
 public class SplashActivity extends AppCompatActivity {
 

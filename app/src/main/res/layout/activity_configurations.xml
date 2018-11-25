@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context=".ConfigurationsActivity">
+    tools:context=".Activities.ConfigurationsActivity">
 
     <TextView
         android:id="@+id/lb_language"
