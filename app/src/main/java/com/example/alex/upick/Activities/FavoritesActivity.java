@@ -6,7 +6,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.example.alex.upick.Adapters.RecyclerListMusicAdapter;
+import com.example.alex.upick.Adapters.RecyclerFavListMusicAdapter;
 import com.example.alex.upick.Models.Music;
 import com.example.alex.upick.R;
 
@@ -16,7 +16,7 @@ import java.util.List;
 public class FavoritesActivity extends AppCompatActivity {
 
     RecyclerView recyclerFavList;
-    RecyclerListMusicAdapter adapter;
+    RecyclerFavListMusicAdapter adapter;
     List<Music> favList = new ArrayList<>();
 
     @Override
@@ -28,7 +28,7 @@ public class FavoritesActivity extends AppCompatActivity {
 
         init();
         createMusics();
-        adapter = new RecyclerListMusicAdapter(favList);
+        adapter = new RecyclerFavListMusicAdapter(favList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerFavList.setLayoutManager(mLayoutManager);
         recyclerFavList.setItemAnimator(new DefaultItemAnimator());
