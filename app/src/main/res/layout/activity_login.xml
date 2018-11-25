@@ -1,76 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
     android:background="@color/colorBackground"
     tools:context=".LoginActivity">
 
-    <ImageView
-        android:id="@+id/img_logo"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/logo_splash" />
+        <ImageView
+            android:id="@+id/img_logo"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginBottom="60dp"
+            app:srcCompat="@mipmap/logo_splash"/>
 
-    <EditText
-        android:id="@+id/txt_email"
-        style="@style/design_edittext"
-        android:layout_marginTop="40dp"
-        android:background="@xml/design_edittext"
-        android:padding="10dp"
-        android:hint="Email"
-        android:inputType="textPersonName"
-        android:singleLine="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_logo"
-        />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/txt_password"
-        style="@style/design_edittext"
-        android:layout_marginTop="8dp"
-        android:background="@xml/design_edittext"
-        android:drawableRight="@drawable/ic_visibility"
-        android:hint="Password"
-        android:padding="10dp"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_email" />
+            <EditText
+                android:id="@+id/txt_email"
+                style="@style/design_edittext"
+                android:background="@xml/design_edittext"
+                android:hint="Email"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:singleLine="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btn_register"
-        style="@style/design_edittext"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@xml/design_edittext"
-        android:text="Login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_password" />
+            <EditText
+                android:id="@+id/txt_password"
+                style="@style/design_edittext"
+                android:layout_marginTop="8dp"
+                android:background="@xml/design_edittext"
+                android:drawableRight="@drawable/ic_visibility"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_email" />
 
-    <TextView
-        android:id="@+id/lb_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="Don't have an account? Register now"
-        android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_register" />
-</android.support.constraint.ConstraintLayout>
+            <Button
+                android:id="@+id/btn_register"
+                style="@style/design_edittext"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@xml/design_edittext"
+                android:text="Login"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.506"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_password" />
+
+            <TextView
+                android:id="@+id/lb_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:text="Don't have an account? Register now"
+                android:textColor="@android:color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_register" />
+
+        </android.support.constraint.ConstraintLayout>
+
+</LinearLayout>
