@@ -1,8 +1,36 @@
-<resources>
-    <string name="app_name">UPick</string>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:locale="en">
 
-    <string name="about_text">Bacon ipsum dolor amet chuck prosciutto pork meatloaf bresaola pig. Tongue shankle burgdoggen tri-tip frankfurter. Biltong short ribs pork belly ball tip bacon porchetta, landjaeger sirloin ground round spare ribs jowl hamburger swine turkey. Ground round pork tri-tip venison, pork chop buffalo cupim tail leberkas chuck drumstick short ribs hamburger bresaola. Bacon ham shankle kielbasa tail corned beef meatloaf. Tri-tip short ribs meatball, chuck doner bacon tail meatloaf spare ribs buffalo frankfurter. Pork belly tail chicken fatback salami swine turkey ham hock sausage, cow landjaeger chuck frankfurter short loin ribeye.
+
+        <string name="app_name" translatable="false">UPick</string>
+
+    <string name="about_text" translatable="false">Bacon ipsum dolor amet chuck prosciutto pork meatloaf bresaola pig. Tongue shankle burgdoggen tri-tip frankfurter. Biltong short ribs pork belly ball tip bacon porchetta, landjaeger sirloin ground round spare ribs jowl hamburger swine turkey. Ground round pork tri-tip venison, pork chop buffalo cupim tail leberkas chuck drumstick short ribs hamburger bresaola. Bacon ham shankle kielbasa tail corned beef meatloaf. Tri-tip short ribs meatball, chuck doner bacon tail meatloaf spare ribs buffalo frankfurter. Pork belly tail chicken fatback salami swine turkey ham hock sausage, cow landjaeger chuck frankfurter short loin ribeye.
 
 Doner pork loin cow, chicken t-bone pork chop ham hock fatback prosciutto shoulder landjaeger andouille drumstick sirloin shankle. Leberkas beef ribs fatback tenderloin, swine buffalo frankfurter strip steak bresaola corned beef brisket ground round meatball tail andouille. Kielbasa beef ribs doner pork chop pork loin picanha turducken hamburger short loin chicken jowl. Swine strip steak kielbasa corned beef, picanha short loin meatloaf chuck flank sirloin beef capicola landjaeger. Venison salami tongue jerky tenderloin alcatra sirloin shank landjaeger pork belly meatloaf kevin bresaola ball tip.
     </string>
+
+    <string name="string_email" translatable="false">Email</string>
+    <string name="string_password" translatable="false">Password</string>
+    <string name="string_login" translatable="false">Login</string>
+    <string name="string_no_account" translatable="false">Don\'t have an account? Register Now</string>
+    <string name="string_username" translatable="false">Username</string>
+    <string name="string_register" translatable="false">Register</string>
+    <string name="string_have_account" translatable="false">Already registered? Log in</string>
+    <string name="string_enter" translatable="false">Enter</string>
+    <string name="string_favorites" translatable="false">Favorites</string>
+    <string name="string_configurations" translatable="false">Configurations</string>
+    <string name="string_about" translatable="false">About</string>
+    <string name="string_localization" translatable="false">Localization : </string>
+    <string name="string_establishment" translatable="false">Establishment : </string>
+    <string name="string_search" translatable="false">Search</string>
+    <string name="string_language" translatable="false">Language</string>
+    <string name="string_current_language" translatable="false">Current language :</string>
+    <string name="string_footer" translatable="false">Footer</string>
+    <string name="string_notifications" translatable="false">Notifications</string>
+    <string name="string_clear_data" translatable="false">Clear data</string>
+
+
+    <!--<string name="string_" translatable="false"></string>-->
+
+
 </resources>
