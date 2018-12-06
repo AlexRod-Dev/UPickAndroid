@@ -61,10 +61,10 @@ public class ConfigurationsActivity extends AppCompatActivity {
                 {
 
 
-                    if(locale.getLanguage().equals("en-us")){
+                    if(locale.getLanguage().equals("en")){
 
                     }else{
-                        editor.putString("language", "en-US");
+                        editor.putString("language", "en");
                         editor.apply();
 
                         updateLanguage(getApplicationContext(),"en");
@@ -76,11 +76,11 @@ public class ConfigurationsActivity extends AppCompatActivity {
 
                 }else if(selectedItem.equals("Português")){
 
-                    if(locale.getLanguage().equals("pt-pt")){
+                    if(locale.getLanguage().equals("pt")){
 
                     }else{
 
-                        editor.putString("language", "pt-pt");
+                        editor.putString("language", "pt");
                         editor.apply();
 
                         updateLanguage(getApplicationContext(),"pt");

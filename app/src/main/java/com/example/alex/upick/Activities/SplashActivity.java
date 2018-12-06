@@ -13,6 +13,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.android.volley.toolbox.Volley;
 import com.example.alex.upick.R;
 
 import java.util.Locale;
