@@ -74,7 +74,8 @@
                         android:layout_height="30dp"
                         android:layout_marginRight="2dp"
                         android:background="@xml/design_genre_button"
-                        android:text="1" />
+                        android:text="Hip-Hop"
+                        android:textSize="11sp" />
 
                     <Button
                         android:id="@+id/button"
@@ -82,7 +83,8 @@
                         android:layout_height="30dp"
                         android:layout_marginRight="2dp"
                         android:background="@xml/design_genre_button"
-                        android:text="2" />
+                        android:text="Pop"
+                        android:textSize="11sp" />
 
                     <Button
                         android:id="@+id/button5"
@@ -91,7 +93,8 @@
                         android:layout_marginRight="2dp"
                         android:layout_weight="1"
                         android:background="@xml/design_genre_button"
-                        android:text="3" />
+                        android:text="Eletronic"
+                        android:textSize="11sp" />
 
                     <Button
                         android:id="@+id/button6"
@@ -100,7 +103,8 @@
                         android:layout_marginRight="2dp"
                         android:layout_weight="1"
                         android:background="@xml/design_genre_button"
-                        android:text="4" />
+                        android:text="Rock"
+                        android:textSize="11sp" />
 
                     <Button
                         android:id="@+id/button7"
@@ -109,7 +113,7 @@
                         android:layout_marginRight="2dp"
                         android:layout_weight="1"
                         android:background="@xml/design_genre_button"
-                        android:text="5" />
+                        android:text="Funk" />
 
                 </LinearLayout>
             </HorizontalScrollView>

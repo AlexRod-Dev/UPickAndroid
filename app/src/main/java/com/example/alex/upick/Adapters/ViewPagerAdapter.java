@@ -10,26 +10,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.alex.upick.Activities.EnterActivity;
-import com.example.alex.upick.Models.Establishment;
+import com.example.alex.upick.Models.Venue;
 import com.example.alex.upick.R;
 
 import java.util.ArrayList;
 
 public class ViewPagerAdapter extends PagerAdapter {
 
-    private ArrayList<Establishment> establishmentList;
+    private ArrayList<Venue> venueList;
     private LayoutInflater inflater;
     private Context context;
 
 
-    public ViewPagerAdapter(ArrayList<Establishment> establishmentList, Context context) {
-        this.establishmentList = establishmentList;
+    public ViewPagerAdapter(ArrayList<Venue> venueList, Context context) {
+        this.venueList = venueList;
         this.context = context;
     }
 
     @Override
     public int getCount() {
-        return establishmentList.size();
+        return venueList.size();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class ViewPagerAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, final int position) {
 
         inflater = LayoutInflater.from(context);
-        View view =inflater.inflate(R.layout.card_establishment, container, false);
+        View view =inflater.inflate(R.layout.card_venue, container, false);
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,8 +54,8 @@ public class ViewPagerAdapter extends PagerAdapter {
         ImageView imageView = view.findViewById(R.id.image);
         TextView name = view.findViewById(R.id.name);
 
-        imageView.setImageResource(establishmentList.get(position).getImage());
-        name.setText(establishmentList.get(position).getName());
+        //imageView.setImageResource(venueList.get(position).getImage());
+        name.setText(venueList.get(position).getName());
 
         container.addView(view,0);
 

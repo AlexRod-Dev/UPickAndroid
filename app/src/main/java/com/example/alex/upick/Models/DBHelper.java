@@ -6,19 +6,19 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    private static final String DB_NAME = "dbupick";
+    private static final String DB_NAME = "upickdb";
     private static final int DB_VERSION = 1;
 
     private static final String TABLE_FAVORITES = "favorites";
-    private static final String ID_FAVORITES = "id";
-    private static final String ID_USER_FAVORITES = "id";
-    private static final String NAME_FAVORITES = "";
-    private static final String GENRE_FAVORITES = "";
-    private static final String DURATION_FAVORITES = "";
-    private static final String IMAGE_FAVORITES = "";
+    private static final String ID_TRACKS_FAVORITES = "track_id";
+    private static final String ID_USER_FAVORITES = "user_id";
+    private static final String ADDED_AT = "added_at";
+    private static final String ARTISTS_FAVORITES = "artists";
+    private static final String NAME_FAVORITES = "name";
+    private static final String IMAGE_FAVORITES = "image";
 
 
-    private  final SQLiteDatabase database;
+    SQLiteDatabase database;
 
     public DBHelper(Context context){
         super(context,DB_NAME,null,DB_VERSION);
@@ -31,11 +31,11 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
             String createTableFavorites =  "CREATE TABLE " + TABLE_FAVORITES +
-                    "( " + ID_FAVORITES + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "( " + ID_TRACKS_FAVORITES + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     ID_USER_FAVORITES + " INTEGER, " +
-                    NAME_FAVORITES + " TEXT NOT NULL, " +
-                    GENRE_FAVORITES + " TEXT NOT NULL, " +
-                    DURATION_FAVORITES + " INTEGER NOT NULL," +
+                    ADDED_AT + " TEXT NOT NULL, " +
+                    ARTISTS_FAVORITES + " TEXT NOT NULL, " +
+                    NAME_FAVORITES + " Text NOT NULL," +
                     IMAGE_FAVORITES + " BLOB " +
                     ");";
 

@@ -23,7 +23,7 @@ public class AddMusicActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_music);
-        getSupportActionBar().setTitle("Add Music");
+        getSupportActionBar().setTitle(R.string.string_add_music);
 
 
         init();
@@ -42,7 +42,7 @@ public class AddMusicActivity extends AppCompatActivity {
 
     private void createMusics() {
 
-        Music music = new Music("faleceu imediatamente", "Papironoo", "3:40", "100", R.drawable.img_album2);
+        Music music = new Music("imediatamente", "Papironoo", "3:40", "100", R.drawable.img_album2);
         favList.add(music);
         music = new Music("Music 2 ", "Autor 2", "2:40", "35", R.drawable.images);
         favList.add(music);

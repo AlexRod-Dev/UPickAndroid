@@ -20,14 +20,20 @@ Doner pork loin cow, chicken t-bone pork chop ham hock fatback prosciutto should
     <string name="string_favorites" translatable="false">Favorites</string>
     <string name="string_configurations" translatable="false">Configurations</string>
     <string name="string_about" translatable="false">About</string>
-    <string name="string_localization" translatable="false">Localization : </string>
-    <string name="string_establishment" translatable="false">Establishment : </string>
+    <string name="string_localization" translatable="false">Localization  </string>
+    <string name="string_venue" translatable="false">Venue  </string>
     <string name="string_search" translatable="false">Search</string>
     <string name="string_language" translatable="false">Language</string>
     <string name="string_current_language" translatable="false">Current language :</string>
     <string name="string_footer" translatable="false">Footer</string>
     <string name="string_notifications" translatable="false">Notifications</string>
     <string name="string_clear_data" translatable="false">Clear data</string>
+    <string name="string_footer_enabled" translatable="false">Enable footer with the Venue news</string>
+    <string name="string_notification_enabled" translatable="false">Enable notifications when your music is coming up</string>
+    <string name="string_add_music" translatable="false">Add Music</string>
+    <string name="string_wrong_token" translatable="false">Wrong Token</string>
+    <string name="string_verify_connection" translatable="false">Error, Please verify your connection or internet permissions</string>
+
 
 
     <!--<string name="string_" translatable="false"></string>-->

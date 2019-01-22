@@ -20,10 +20,11 @@ public class AboutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-        getSupportActionBar().setTitle("About");
+        getSupportActionBar().setTitle(R.string.string_about);
 
 
         init();
+
 
         cardAbout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,14 +35,12 @@ public class AboutActivity extends AppCompatActivity {
                     a.setDuration(500);
                     txtInstructions.setVisibility(View.GONE);
 
-                    if(a != null) {
-                        a.reset();
+                    a.reset();
 
-                        if (txtAbout != null) {
+                    if (txtAbout != null) {
 
-                            txtAbout.clearAnimation();
-                            txtAbout.startAnimation(a);
-                        }
+                        txtAbout.clearAnimation();
+                        txtAbout.startAnimation(a);
                     }
                 }
 

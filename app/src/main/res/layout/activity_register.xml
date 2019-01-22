@@ -49,18 +49,29 @@
             app:layout_constraintTop_toBottomOf="@+id/txt_username" />
 
 
-        <EditText
-            android:id="@+id/txt_password"
-            style="@style/design_edittext"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/etPasswordLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:background="@xml/design_edittext"
-            android:drawableRight="@drawable/ic_visibility"
-            android:hint="@string/string_password"
-            android:inputType="textPassword"
-            android:padding="10dp"
+            app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_email" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_email"
+            app:passwordToggleEnabled="true">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/txt_password"
+                style="@style/design_edittext"
+                android:layout_marginTop="8dp"
+                android:background="@xml/design_edittext"
+                android:hint="@string/string_password"
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_email"
+                android:inputType="textPassword" />
+        </android.support.design.widget.TextInputLayout>
 
         <Button
             android:id="@+id/btn_register"
@@ -75,7 +86,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.506"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_password" />
+            app:layout_constraintTop_toBottomOf="@+id/etPasswordLayout" />
 
         <TextView
             android:id="@+id/lb_login"

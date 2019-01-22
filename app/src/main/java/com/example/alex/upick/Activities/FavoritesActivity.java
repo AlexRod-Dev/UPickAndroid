@@ -23,11 +23,12 @@ public class FavoritesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorites);
-        getSupportActionBar().setTitle("Favorites");
+        getSupportActionBar().setTitle(R.string.string_favorites);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         init();
         createMusics();
+
         adapter = new RecyclerFavListMusicAdapter(favList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerFavList.setLayoutManager(mLayoutManager);

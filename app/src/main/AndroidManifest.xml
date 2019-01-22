@@ -3,6 +3,7 @@
     package="com.example.alex.upick">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
 
@@ -12,10 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Activities.MenuActivity" />
+            android:name=".Activities.MenuActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".Activities.LoginActivity"
-            android:launchMode="singleTask"/>
-        <activity android:name=".Activities.SplashActivity">
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,23 +28,31 @@
         </activity>
         <activity
             android:name=".Activities.RegisterActivity"
-            android:parentActivityName=".Activities.LoginActivity" />
+            android:parentActivityName=".Activities.LoginActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activities.EnterActivity"
-            android:parentActivityName=".Activities.MenuActivity" />
+            android:parentActivityName=".Activities.MenuActivity"
+            android:screenOrientation="portrait"/>
         <activity
-            android:name=".Activities.EstablishmentActivity" />
+            android:name=".Activities.VenueActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activities.ConfigurationsActivity"
-            android:parentActivityName=".Activities.MenuActivity" />
+            android:parentActivityName=".Activities.MenuActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activities.AboutActivity"
-            android:parentActivityName=".Activities.MenuActivity" />
+            android:parentActivityName=".Activities.MenuActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activities.AddMusicActivity"
-            android:parentActivityName=".Activities.EstablishmentActivity" />
-        <activity android:name=".Activities.FavoritesActivity"
-                  android:parentActivityName=".Activities.MenuActivity"></activity>
+            android:parentActivityName=".Activities.VenueActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Activities.FavoritesActivity"
+            android:parentActivityName=".Activities.MenuActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
