@@ -15,30 +15,29 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.alex.upick.Adapters.RecyclerListMusicAdapter;
-import com.example.alex.upick.Adapters.ViewPagerAdapter;
-import com.example.alex.upick.Fragments.TokenDialogFragment;
 import com.example.alex.upick.Fragments.VenueDialogFragment;
 import com.example.alex.upick.Interfaces.RetrofitClient;
 import com.example.alex.upick.Interfaces.RetrofitInterface;
+import com.example.alex.upick.Models.CurrentSong;
 import com.example.alex.upick.Models.Music;
 import com.example.alex.upick.Models.News;
 import com.example.alex.upick.Models.Queue;
+import com.example.alex.upick.Models.Track;
 import com.example.alex.upick.Models.Venue;
 import com.example.alex.upick.R;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -46,19 +45,21 @@ import retrofit2.Retrofit;
 
 public class VenueActivity extends AppCompatActivity {
     FloatingActionButton fabAddMusic;
-    ImageView btnFav;
-    TextView txtMarquee;
+    ImageView btnFav,imgTrack;
+    TextView txtMarquee,lbMusicName,lbArtistName;
     Intent i;
     RecyclerView recyclerListMusic;
     RecyclerListMusicAdapter adapter;
     List<Music> musicList = new ArrayList<>();
     SharedPreferences prefs;
     String jsonVenue;
+    String currentSongId;
+
 
     RetrofitInterface myApi;
     int count = 0;
     Venue venue;
-
+    Retrofit retrofit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,34 +69,125 @@ public class VenueActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
 
-        jsonVenue = extras.getString("venue");
+        if(extras != null){
+            jsonVenue = extras.getString("venue");
 
-        venue = new Gson().fromJson(jsonVenue, Venue.class);
-
-
-
-        getSupportActionBar().setTitle(venue.getName());
+            venue = new Gson().fromJson(jsonVenue, Venue.class);
 
 
+            getSupportActionBar().setTitle(venue.getName());
+        }
 
 
-        createMusics();
+
+
         init();
+        refreshSpotToken();
+        getCurrentSong();
+        getQueue();
+        getNews();
 
 
-        //init API
 
-        Retrofit retrofit = RetrofitClient.getInstance();
-        myApi = retrofit.create(RetrofitInterface.class);
+        txtMarquee.setSelected(true);
+        lbMusicName.setSelected(true);
 
-        Call<ArrayList<News>> mService = myApi.getNews(venue.getId(),"application/json",LoginActivity.auth_key);
+        prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+
+        if (prefs.getBoolean("news", true)) {
+            txtMarquee.setVisibility(View.VISIBLE);
+            txtMarquee.setEnabled(true);
+
+        } else {
+            txtMarquee.setVisibility(View.GONE);
+            txtMarquee.setEnabled(false);
+        }
+
+
+
+
+        fabAddMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                i = new Intent(VenueActivity.this, AddMusicActivity.class);
+                startActivity(i);
+            }
+        });
+
+
+        btnFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (btnFav.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.ic_icon_not_fav).getConstantState()) {
+
+                    btnFav.setImageResource(R.drawable.ic_icon_fav);
+                } else {
+
+                    btnFav.setImageResource(R.drawable.ic_icon_not_fav);
+                }
+
+            }
+        });
+
+
+
+    }
+
+    private void getTrack() {
+
+        Call<JsonObject> mService = myApi.getTrack(currentSongId, "application/json", LoginActivity.auth_key);
+
+        mService.enqueue(new Callback<JsonObject>() {
+
+
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+
+                if(response.body() != null){
+                    lbMusicName.setText(response.body().get("name").getAsString());
+                    lbArtistName.setText(response.body().get("artists").getAsJsonArray().get(0).getAsJsonObject().get("name").getAsString());
+                    String url = response.body().get("album").getAsJsonObject().get("images").getAsJsonArray().get(0).getAsJsonObject().get("url").getAsString();
+                    Picasso.get().load(url).into(imgTrack);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void refreshSpotToken() {
+
+
+        Call<ArrayList> mService = myApi.getToken(LoginActivity.userId, "application/json", LoginActivity.auth_key);
+        mService.enqueue(new Callback<ArrayList>() {
+            @Override
+            public void onResponse(Call<ArrayList> call, Response<ArrayList> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+    private void getNews() {
+
+        Call<ArrayList<News>> mService = myApi.getNews(venue.getId(), "application/json", LoginActivity.auth_key);
         mService.enqueue(new Callback<ArrayList<News>>() {
             @Override
             public void onResponse(Call<ArrayList<News>> call, final Response<ArrayList<News>> response) {
 
 
-                if(response.body()!=null){
-                    for(int i = 0; i<response.body().size(); i++) {
+                if (response.body() != null) {
+                    for (int i = 0; i < response.body().size(); i++) {
 
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -120,50 +212,26 @@ public class VenueActivity extends AppCompatActivity {
             }
         });
 
-        getQueue();
 
-        txtMarquee.setSelected(true);
+    }
 
-        prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+    private void getCurrentSong() {
 
+        Call<CurrentSong> mService = myApi.getCurrentSong(venue.getId(), "application/json", LoginActivity.auth_key);
+        mService.enqueue(new Callback<CurrentSong>() {
 
-        if(prefs.getBoolean("news",true)){
-            txtMarquee.setVisibility(View.VISIBLE);
-            txtMarquee.setEnabled(true);
-
-        }else{
-            txtMarquee.setVisibility(View.GONE);
-            txtMarquee.setEnabled(false);
-        }
-
-
-
-
-        adapter = new RecyclerListMusicAdapter(musicList);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerListMusic.setLayoutManager(mLayoutManager);
-        recyclerListMusic.setItemAnimator(new DefaultItemAnimator());
-        recyclerListMusic.setAdapter(adapter);
-
-        fabAddMusic.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                  i = new Intent(VenueActivity.this,AddMusicActivity.class);
-                 startActivity(i);
-            }
-        });
+            public void onResponse(Call<CurrentSong> call, Response<CurrentSong> response) {
 
-
-        btnFav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(btnFav.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.ic_icon_not_fav).getConstantState()){
-
-                    btnFav.setImageResource(R.drawable.ic_icon_fav);
-                }else{
-
-                    btnFav.setImageResource(R.drawable.ic_icon_not_fav);
+                if(response.body() != null) {
+                    currentSongId = response.body().getTrack_id();
+                    getTrack();
                 }
+
+            }
+
+            @Override
+            public void onFailure(Call<CurrentSong> call, Throwable t) {
 
             }
         });
@@ -172,12 +240,51 @@ public class VenueActivity extends AppCompatActivity {
 
     private void getQueue() {
 
-        Call<ArrayList<Queue>> mService = myApi.getQueue(venue.getId(),"application/json",LoginActivity.auth_key);
+        Call<ArrayList<Queue>> mService = myApi.getQueue(venue.getId(), "application/json", LoginActivity.auth_key);
         mService.enqueue(new Callback<ArrayList<Queue>>() {
             @Override
-        public void onResponse(Call<ArrayList<Queue>> call, Response<ArrayList<Queue>> response) {
-                if(response.body()!=null){
-                    response.body().size();
+            public void onResponse(Call<ArrayList<Queue>> call, Response<ArrayList<Queue>> response) {
+                if (response.body() != null) {
+                        final int listCount = response.body().size();
+                    for(int i = 0; i < listCount;i++){
+
+
+
+                        Call<JsonObject> mService = myApi.getTrack(response.body().get(i).getTrack_id(), "application/json", LoginActivity.auth_key);
+                            mService.enqueue(new Callback<JsonObject>() {
+                                @Override
+                                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+
+                                    if(response.body()!=null){
+                                        String name = response.body().get("name").getAsString();
+                                        String artistName = response.body().get("artists").getAsJsonArray().get(0).getAsJsonObject().get("name").getAsString();
+                                        String url = response.body().get("album").getAsJsonObject().get("images").getAsJsonArray().get(0).getAsJsonObject().get("url").getAsString();
+                                        String time = response.body().get("duration_ms").getAsString();
+
+                                        Music music = new Music(name,artistName,time,"0",url);
+                                        musicList.add(music);
+
+                                    }
+
+
+                                    if(musicList.size()==listCount){
+                                        adapter = new RecyclerListMusicAdapter(musicList);
+                                        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                                        recyclerListMusic.setLayoutManager(mLayoutManager);
+                                        recyclerListMusic.setItemAnimator(new DefaultItemAnimator());
+                                        recyclerListMusic.setAdapter(adapter);
+                                    }
+
+
+                                }
+
+                                @Override
+                                public void onFailure(Call<JsonObject> call, Throwable t) {
+
+                                }
+                            });
+                    }
+
 
 
                 }
@@ -197,26 +304,15 @@ public class VenueActivity extends AppCompatActivity {
         txtMarquee = findViewById(R.id.txt_marquee);
         btnFav = findViewById(R.id.btn_fav);
         recyclerListMusic = findViewById(R.id.recycler_list_music);
+        lbMusicName = findViewById(R.id.lb_music_name);
+        lbArtistName = findViewById(R.id.lb_artist_name);
+        imgTrack = findViewById(R.id.img_track);
+        //init API
+        retrofit = RetrofitClient.getInstance();
+        myApi = retrofit.create(RetrofitInterface.class);
     }
 
-    private void createMusics() {
 
-        Music music = new Music("imediatamente", "Papironoo", "3:40", "100", R.drawable.img_album2);
-        musicList.add(music);
-        music = new Music("Music 2 ", "Autor 2", "2:40", "35", R.drawable.images);
-        musicList.add(music);
-        music = new Music("Music 3", "Autor 3", "5:40", "30", R.drawable.img_album3);
-        musicList.add(music);
-        music = new Music("Music 4", "Autor 4", "1:20", "27", R.drawable.img_album4);
-        musicList.add(music);
-        music = new Music("Music 5", "Autor 5", "00:40", "22", R.drawable.img_album2);
-        musicList.add(music);
-        music = new Music("Music 6", "Autor 6", "7:30", "9", R.drawable.img_album3);
-        musicList.add(music);
-        music = new Music("Music 7", "Autor 7", "4:20", "2", R.drawable.img_album4);
-        musicList.add(music);
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -230,7 +326,7 @@ public class VenueActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.menu_exit:
-                i = new Intent(VenueActivity.this,MenuActivity.class);
+                i = new Intent(VenueActivity.this, MenuActivity.class);
                 startActivity(i);
                 finish();
                 return true;
@@ -239,7 +335,7 @@ public class VenueActivity extends AppCompatActivity {
 
                 FragmentManager fm = getSupportFragmentManager();
                 VenueDialogFragment vdf = new VenueDialogFragment();
-                vdf.show(fm,"TAG");
+                vdf.show(fm, "TAG");
         }
         return super.onOptionsItemSelected(item);
     }

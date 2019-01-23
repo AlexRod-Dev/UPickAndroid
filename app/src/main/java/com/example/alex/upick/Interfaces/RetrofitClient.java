@@ -11,6 +11,8 @@ public class RetrofitClient {
         if(ourInstance==null)
             ourInstance = new Retrofit.Builder()
                     //10.0.2.2  -> ip para emulador//
+                    //192.168.0.101 -> quarto//
+                    //192.168.1.181 -> sala//
                     .baseUrl("http://192.168.0.101:8888/upickweb/api/web/v1/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

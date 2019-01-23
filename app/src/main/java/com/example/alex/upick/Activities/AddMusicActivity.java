@@ -27,7 +27,7 @@ public class AddMusicActivity extends AppCompatActivity {
 
 
         init();
-        createMusics();
+
         adapter = new RecyclerAddMusicAdapter(favList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerFavList.setLayoutManager(mLayoutManager);
@@ -40,22 +40,4 @@ public class AddMusicActivity extends AppCompatActivity {
         recyclerFavList = findViewById(R.id.recycler_fav_list);
     }
 
-    private void createMusics() {
-
-        Music music = new Music("imediatamente", "Papironoo", "3:40", "100", R.drawable.img_album2);
-        favList.add(music);
-        music = new Music("Music 2 ", "Autor 2", "2:40", "35", R.drawable.images);
-        favList.add(music);
-        music = new Music("Music 3", "Autor 3", "5:40", "30", R.drawable.img_album3);
-        favList.add(music);
-        music = new Music("Music 4", "Autor 4", "1:20", "27", R.drawable.img_album4);
-        favList.add(music);
-        music = new Music("Music 5", "Autor 5", "00:40", "22", R.drawable.img_album2);
-        favList.add(music);
-        music = new Music("Music 6", "Autor 6", "7:30", "9", R.drawable.img_album3);
-        favList.add(music);
-        music = new Music("Music 7", "Autor 7", "4:20", "2", R.drawable.img_album4);
-        favList.add(music);
-
-    }
 }

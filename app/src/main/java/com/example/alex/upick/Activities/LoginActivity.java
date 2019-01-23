@@ -49,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
     byte[] data = null;
     String namePass;
     public static String auth_key = null;
+    public static int userId = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (response.body() != null) {
 
                             auth_key = "Bearer "+response.body().getAuth_key();
+                            userId = response.body().getId();
                             i = new Intent(LoginActivity.this,MenuActivity.class);
                             startActivity(i);
                             finish();

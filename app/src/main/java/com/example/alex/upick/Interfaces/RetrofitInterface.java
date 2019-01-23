@@ -1,9 +1,13 @@
 package com.example.alex.upick.Interfaces;
 
+import com.example.alex.upick.Models.CurrentSong;
 import com.example.alex.upick.Models.News;
 import com.example.alex.upick.Models.Queue;
+import com.example.alex.upick.Models.Track;
 import com.example.alex.upick.Models.User;
 import com.example.alex.upick.Models.Venue;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +40,23 @@ public interface RetrofitInterface {
         Call<ArrayList<Queue>> getQueue(@Path("venueid") int id, @Header("accept") String accept, @Header("authorization") String auth_key);
 
 
-    @FormUrlEncoded
-    @POST("user/login")
-    //void getLogin(@Field("username") String username, @Header("accept") String acept, @Header("authorization") String encodedString);
-    Call<User> getLogin(@Field("username") String username, @Header("accept") String accept, @Header("authorization") String encodedString);
+        @GET("currentsong/{venueid}/getcurrentsong")
+        Call<CurrentSong> getCurrentSong(@Path("venueid") int id, @Header("accept") String accept, @Header("authorization") String auth_key);
+
+        @FormUrlEncoded
+        @POST("spotify/refresh")
+        Call<ArrayList> getToken(@Field("id") int id, @Header("accept") String accept, @Header("authorization") String auth_key);
+
+        @FormUrlEncoded
+        @POST("spotify/gettrack")
+        Call<JsonObject> getTrack(@Field("track_id") String track_id, @Header("accept") String accept, @Header("authorization") String auth_key);
+
+
+
+        @FormUrlEncoded
+        @POST("user/login")
+        //void getLogin(@Field("username") String username, @Header("accept") String acept, @Header("authorization") String encodedString);
+        Call<User> getLogin(@Field("username") String username, @Header("accept") String accept, @Header("authorization") String encodedString);
 
 
    // @POST("queue")

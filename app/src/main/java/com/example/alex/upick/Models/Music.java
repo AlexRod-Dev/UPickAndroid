@@ -2,10 +2,9 @@ package com.example.alex.upick.Models;
 
 public class Music {
 
-    private String nome,autor,time,likes;
-    private int img;
+    private String nome,autor,time,likes,img;
 
-    public Music(String nome, String autor, String time, String likes, int img) {
+    public Music(String nome, String autor, String time, String likes, String img) {
         this.nome = nome;
         this.autor = autor;
         this.time = time;
@@ -45,11 +44,11 @@ public class Music {
         this.likes = likes;
     }
 
-    public int getImg() {
+    public String getImg() {
         return img;
     }
 
-    public void setImg(int img) {
+    public void setImg(String img) {
         this.img = img;
     }
 }

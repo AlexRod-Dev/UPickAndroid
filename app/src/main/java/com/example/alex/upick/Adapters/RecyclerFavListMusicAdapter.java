@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.alex.upick.Models.Music;
 import com.example.alex.upick.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class RecyclerFavListMusicAdapter extends RecyclerView.Adapter<RecyclerFa
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         Music music = musicList.get(position);
-        holder.img.setImageResource(music.getImg());
+        Picasso.get().load(music.getImg()).into(holder.img);
         holder.autor.setText(music.getAutor());
         holder.music.setText(music.getNome());
         holder.time.setText(music.getTime());
