@@ -4,30 +4,29 @@ public class Venue {
     private int id;
     private String name;
     private String description;
-    private String twitterlink;
-    private String facebooklink;
-    private String instagramlink;
-    private Double poslat;
-    private Double postlong;
+    private String twitterLink;
+    private String facebookLink;
+    private String instagramLink;
+    private Double posLat;
+    private Double posLong;
     private String token;
     private String queue;
     private String range;
-    private String imagePath;
+    private String imagepath;
 
-
-    public Venue(int id, String name, String description, String twitterlink, String facebooklink, String instagramlink, Double poslat, Double postlong, String token, String queue, String range, String imagePath) {
+    public Venue(int id, String name, String description, String twitterLink, String facebookLink, String instagramLink, Double posLat, Double posLong, String token, String queue, String range, String imagepath) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.twitterlink = twitterlink;
-        this.facebooklink = facebooklink;
-        this.instagramlink = instagramlink;
-        this.poslat = poslat;
-        this.postlong = postlong;
+        this.twitterLink = twitterLink;
+        this.facebookLink = facebookLink;
+        this.instagramLink = instagramLink;
+        this.posLat = posLat;
+        this.posLong = posLong;
         this.token = token;
         this.queue = queue;
         this.range = range;
-        this.imagePath = imagePath;
+        this.imagepath = imagepath;
     }
 
     public int getId() {
@@ -54,44 +53,44 @@ public class Venue {
         this.description = description;
     }
 
-    public String getTwitterlink() {
-        return twitterlink;
+    public String getTwitterLink() {
+        return twitterLink;
     }
 
-    public void setTwitterlink(String twitterlink) {
-        this.twitterlink = twitterlink;
+    public void setTwitterLink(String twitterLink) {
+        this.twitterLink = twitterLink;
     }
 
-    public String getFacebooklink() {
-        return facebooklink;
+    public String getFacebookLink() {
+        return facebookLink;
     }
 
-    public void setFacebooklink(String facebooklink) {
-        this.facebooklink = facebooklink;
+    public void setFacebookLink(String facebookLink) {
+        this.facebookLink = facebookLink;
     }
 
-    public String getInstagramlink() {
-        return instagramlink;
+    public String getInstagramLink() {
+        return instagramLink;
     }
 
-    public void setInstagramlink(String instagramlink) {
-        this.instagramlink = instagramlink;
+    public void setInstagramLink(String instagramLink) {
+        this.instagramLink = instagramLink;
     }
 
-    public Double getPoslat() {
-        return poslat;
+    public Double getPosLat() {
+        return posLat;
     }
 
-    public void setPoslat(Double poslat) {
-        this.poslat = poslat;
+    public void setPosLat(Double posLat) {
+        this.posLat = posLat;
     }
 
-    public Double getPostlong() {
-        return postlong;
+    public Double getPosLong() {
+        return posLong;
     }
 
-    public void setPostlong(Double postlong) {
-        this.postlong = postlong;
+    public void setPosLong(Double posLong) {
+        this.posLong = posLong;
     }
 
     public String getToken() {
@@ -118,11 +117,11 @@ public class Venue {
         this.range = range;
     }
 
-    public String getImagePath() {
-        return imagePath;
+    public String getImagepath() {
+        return imagepath;
     }
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+    public void setImagepath(String imagepath) {
+        this.imagepath = imagepath;
     }
 }

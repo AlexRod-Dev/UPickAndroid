@@ -4,13 +4,15 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.alex.upick.R;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    TextView txtLogin;
+    TextView txtLogin,txtUsername,txtEmail,txtPassword;
+    Button btnRegister;
     Intent i;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +21,9 @@ public class RegisterActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.string_register);
 
         init();
+
+
+
 
         txtLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,5 +37,10 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void init() {
         txtLogin = findViewById(R.id.lb_login);
+        txtUsername = findViewById(R.id.txt_username);
+        txtEmail = findViewById(R.id.txt_email);
+        txtPassword = findViewById(R.id.txt_password);
+        btnRegister = findViewById(R.id.btn_register);
+
     }
 }

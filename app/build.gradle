@@ -39,4 +39,5 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.1.7'
     //Picasso ->images download/display
     implementation 'com.squareup.picasso:picasso:2.71828'
+
 }

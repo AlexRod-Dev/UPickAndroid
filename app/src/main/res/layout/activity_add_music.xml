@@ -45,7 +45,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <RadioButton
-                    android:id="@+id/radioButton"
+                    android:id="@+id/rb_search"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -54,7 +54,7 @@
                     android:textSize="18sp" />
 
                 <RadioButton
-                    android:id="@+id/radioButton2"
+                    android:id="@+id/rb_fav"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -65,27 +65,28 @@
             </RadioGroup>
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/txt_search"
                 style="@style/design_edittext"
-                android:layout_width="0dp"
+                android:layout_width="210dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
                 android:background="@xml/design_edittext"
                 android:drawableStart="@drawable/ic_icon_search"
                 android:drawableLeft="@drawable/ic_icon_search"
                 android:focusable="auto"
                 android:inputType="textPersonName"
                 android:selectAllOnFocus="false"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_search"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
             <HorizontalScrollView
+                android:id="@+id/horizontalScrollView"
                 android:layout_width="match_parent"
                 android:layout_height="42dp"
                 android:layout_marginStart="8dp"
@@ -96,7 +97,7 @@
                 android:scrollbars="none"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText">
+                app:layout_constraintTop_toBottomOf="@+id/txt_search">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -153,6 +154,21 @@
 
                 </LinearLayout>
             </HorizontalScrollView>
+
+            <Button
+                android:id="@+id/btn_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="Search"
+                app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/txt_search"
+                app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
         </android.support.constraint.ConstraintLayout>
 

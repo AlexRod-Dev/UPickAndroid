@@ -120,6 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<User> call, Throwable t) {
                         Toast.makeText(getApplicationContext(),R.string.string_verify_connection,Toast.LENGTH_LONG).show();
+                        imgLogo.clearAnimation();
                     }
 
 

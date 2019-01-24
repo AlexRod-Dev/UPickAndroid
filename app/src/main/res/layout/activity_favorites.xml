@@ -31,7 +31,7 @@
 
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/txt_search"
                 style="@style/design_edittext"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
@@ -60,7 +60,7 @@
                 android:scrollbars="none"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText">
+                app:layout_constraintTop_toBottomOf="@+id/txt_search">
 
                 <LinearLayout
                     android:layout_width="match_parent"

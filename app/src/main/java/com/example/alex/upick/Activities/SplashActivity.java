@@ -13,14 +13,25 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.example.alex.upick.Interfaces.RetrofitClient;
+import com.example.alex.upick.Interfaces.RetrofitInterface;
 import com.example.alex.upick.R;
 
+import java.util.ArrayList;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class SplashActivity extends AppCompatActivity {
 
 
     SharedPreferences prefs;
+    Retrofit retrofit;
+    RetrofitInterface myApi;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +40,9 @@ public class SplashActivity extends AppCompatActivity {
 
         ImageView imgLogo = findViewById(R.id.img_logo);
 
+        retrofit = RetrofitClient.getInstance();
+        myApi = retrofit.create(RetrofitInterface.class);
+
         Animation animation = AnimationUtils.loadAnimation(this,R.anim.rotation_animation);
         imgLogo.startAnimation(animation);
 
@@ -36,17 +50,20 @@ public class SplashActivity extends AppCompatActivity {
         String lang = prefs.getString("language", "pt-PT");
         updateLanguage(this,lang);
 
-
-        new Handler().postDelayed(new Runnable() {
+        Call<ArrayList> mService = myApi.getToken(LoginActivity.userId, "application/json", LoginActivity.auth_key);
+        mService.enqueue(new Callback<ArrayList>() {
             @Override
-            public void run() {
+            public void onResponse(Call<ArrayList> call, Response<ArrayList> response) {
                 Intent i = new Intent(SplashActivity.this,LoginActivity.class);
                 startActivity(i);
                 finish();
             }
-        },1000);
 
+            @Override
+            public void onFailure(Call<ArrayList> call, Throwable t) {
 
+            }
+        });
 
 
 

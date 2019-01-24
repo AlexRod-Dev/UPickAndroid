@@ -52,6 +52,11 @@ public interface RetrofitInterface {
         Call<JsonObject> getTrack(@Field("track_id") String track_id, @Header("accept") String accept, @Header("authorization") String auth_key);
 
 
+        @FormUrlEncoded
+        @POST("spotify/search")
+        Call<JsonObject> getSearch(@Field("search") String search, @Header("accept") String accept, @Header("authorization") String auth_key);
+
+
 
         @FormUrlEncoded
         @POST("user/login")

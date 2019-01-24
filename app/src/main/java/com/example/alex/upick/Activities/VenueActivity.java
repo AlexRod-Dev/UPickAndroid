@@ -55,11 +55,11 @@ public class VenueActivity extends AppCompatActivity {
     String jsonVenue;
     String currentSongId;
 
-
+    Retrofit retrofit;
     RetrofitInterface myApi;
     int count = 0;
     Venue venue;
-    Retrofit retrofit;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,6 +149,8 @@ public class VenueActivity extends AppCompatActivity {
                     lbArtistName.setText(response.body().get("artists").getAsJsonArray().get(0).getAsJsonObject().get("name").getAsString());
                     String url = response.body().get("album").getAsJsonObject().get("images").getAsJsonArray().get(0).getAsJsonObject().get("url").getAsString();
                     Picasso.get().load(url).into(imgTrack);
+
+
                 }
 
             }

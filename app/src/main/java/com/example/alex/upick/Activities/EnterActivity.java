@@ -27,13 +27,7 @@ import com.example.alex.upick.R;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import io.reactivex.Scheduler;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,7 +41,8 @@ public class EnterActivity extends AppCompatActivity implements LocationListener
     TextView txtCoord;
     RetrofitInterface myApi;
     Venue venue;
-
+    Location location;
+    double earthRadius = 6371000, checker;
 
 
     @Override
@@ -78,9 +73,14 @@ public class EnterActivity extends AppCompatActivity implements LocationListener
 
             @Override
             public void onResponse(Call<ArrayList<Venue>> call, Response<ArrayList<Venue>> response) {
-                venueList = response.body();
-                adapter = new ViewPagerAdapter(response.body(),EnterActivity.this);
-                viewPager.setAdapter(adapter);
+
+                if(response.body()!=null){
+
+                    venueList = response.body();
+                    adapter = new ViewPagerAdapter(venueList,EnterActivity.this);
+                    viewPager.setAdapter(adapter);
+                }
+
             }
 
             @Override
@@ -153,18 +153,54 @@ public class EnterActivity extends AppCompatActivity implements LocationListener
 
     }
 
+    private double VenueDistanceCalculator(Double latitudeFrom, Double longitudeFrom, Double latitudeTo, Double longitudeTo, Double earthRadius) {
+
+         Double latFrom = Math.toRadians(latitudeFrom);
+         Double lonFrom = Math.toRadians(longitudeFrom);
+         Double latTo = Math.toRadians(latitudeTo);
+         Double lonTo = Math.toRadians(latitudeTo);
+
+         Double latDelta = latTo - latFrom;
+         Double lonDelta = lonTo - lonFrom;
+
+         Double angle = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(latDelta/2), 2) + Math.cos(latFrom) * Math.cos(latTo) * Math.pow(Math.sin(lonDelta / 2 ), 2)));
+
+        return (angle * earthRadius);
+
+
+
+    }
 
 
     public void clickedCard(int position){
 
-        venue = new Venue(venueList.get(position).getId(),venueList.get(position).getName(),venueList.get(position).getDescription(),venueList.get(position).getTwitterlink(),venueList.get(position).getFacebooklink(),venueList.get(position).getInstagramlink(),venueList.get(position).getPoslat(),venueList.get(position).getPostlong(),venueList.get(position).getToken(),venueList.get(position).getQueue(),venueList.get(position).getRange(),venueList.get(position).getImagePath());
+        venue = new Venue(venueList.get(position).getId(),venueList.get(position).getName(),venueList.get(position).getDescription(),venueList.get(position).getTwitterLink(),venueList.get(position).getFacebookLink(),venueList.get(position).getInstagramLink(),venueList.get(position).getPosLat(),venueList.get(position).getPosLong(),venueList.get(position).getToken(),venueList.get(position).getQueue(),venueList.get(position).getRange(),venueList.get(position).getImagepath());
+
+
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        //Fazer a verificação se tem permissao gps
+        @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+
+        checker = VenueDistanceCalculator(venueList.get(position).getPosLat(),venueList.get(position).getPosLong(),location.getLatitude(),location.getLongitude(),earthRadius);
+
+        if(checker >=0 && checker <= Integer.parseInt(venueList.get(position).getRange())){
+
+            Toast.makeText(getApplicationContext(),"Entra só",Toast.LENGTH_LONG).show();
+
+        }
+        else{
+            Toast.makeText(getApplicationContext(),"estas longe pra crl",Toast.LENGTH_LONG).show();
+        }
+/*
         Bundle args = new Bundle();
         args.putString("venue", new Gson().toJson(venue));
 
         FragmentManager fm = getSupportFragmentManager();
         TokenDialogFragment edf = new TokenDialogFragment();
         edf.setArguments(args);
-        edf.show(fm,"TAG");
+        edf.show(fm,"TAG");*/
     }
 
 
