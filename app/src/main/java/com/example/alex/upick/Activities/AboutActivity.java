@@ -1,5 +1,6 @@
 package com.example.alex.upick.Activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -14,7 +15,7 @@ public class AboutActivity extends AppCompatActivity {
 
     CardView cardAbout,cardInstructions;
     TextView txtAbout,txtInstructions;
-
+    Intent i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,5 +80,13 @@ public class AboutActivity extends AppCompatActivity {
         cardInstructions = findViewById(R.id.card_instructions);
         txtAbout = findViewById(R.id.txt_about);
         txtInstructions = findViewById(R.id.txt_instructions);
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        i = new Intent(AboutActivity.this, MenuActivity.class);
+        startActivity(i);
+        finish();
     }
 }
