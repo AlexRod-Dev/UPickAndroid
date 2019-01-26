@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.alex.upick.Activities.EnterActivity;
+import com.example.alex.upick.Activities.LoginActivity;
 import com.example.alex.upick.Models.Venue;
 import com.example.alex.upick.R;
 import com.squareup.picasso.Picasso;
@@ -60,9 +61,9 @@ public class ViewPagerAdapter extends PagerAdapter {
         if(!venueList.get(position).getImagepath().equals("")){
 
            // Picasso.get().load(venueList.get(position).getImagepath()).into(imageView);
-            Picasso.get().load("http://192.168.0.101:8888/upickweb/frontend/web/img/venue_logos/"+venueList.get(position).getImagepath()).into(imageView);
+            Picasso.get().load(LoginActivity.ipServidor+"/frontend/web/img/venue_logos/"+venueList.get(position).getImagepath()).into(imageView);
         }else{
-            Picasso.get().load("http://192.168.0.101:8888/upickweb/frontend/web/img/venue_logos/not_available.png").into(imageView);
+            Picasso.get().load(LoginActivity.ipServidor+"/frontend/web/img/venue_logos/not_available.png").into(imageView);
         }
 
 

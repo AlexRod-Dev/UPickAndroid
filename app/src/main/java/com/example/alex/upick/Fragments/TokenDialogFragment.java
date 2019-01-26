@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.alex.upick.Activities.LoginActivity;
 import com.example.alex.upick.Activities.VenueActivity;
 import com.example.alex.upick.Models.Venue;
 import com.example.alex.upick.R;
@@ -41,7 +42,10 @@ public class TokenDialogFragment extends DialogFragment {
         Button btnEnter = view.findViewById(R.id.btn_enter);
 
         if(!venue.getImagepath().equals("")){
-            Picasso.get().load(venue.getImagepath()).into(imgVenue);
+            Picasso.get().load(LoginActivity.ipServidor+"/frontend/web/img/venue_logos/"+venue.getImagepath()).into(imgVenue);
+
+        }else{
+            Picasso.get().load(LoginActivity.ipServidor+"/frontend/web/img/venue_logos/not_available.png").into(imgVenue);
         }
 
         lbNome.setText(name);
