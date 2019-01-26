@@ -55,30 +55,47 @@ public class EnterActivity extends AppCompatActivity implements LocationListener
         //trocar este pedido de permissao por algo mais amigavel aos olhos.
         if (ActivityCompat.checkSelfPermission(EnterActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(EnterActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(EnterActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-            return;}
-
+            return;
+        }
 
 
         init();
+        refreshSpotToken();
 
 
-        //init API
-
-        Retrofit retrofit = RetrofitClient.getInstance();
-        myApi = retrofit.create(RetrofitInterface.class);
-
-        Call<ArrayList<Venue>> mService = myApi.getVenues("application/json",LoginActivity.auth_key);
+        Call<ArrayList<Venue>> mService = myApi.getVenues("application/json", LoginActivity.auth_key);
         mService.enqueue(new Callback<ArrayList<Venue>>() {
 
 
             @Override
             public void onResponse(Call<ArrayList<Venue>> call, Response<ArrayList<Venue>> response) {
 
-                if(response.body()!=null){
+                if (response.body() != null) {
 
-                    venueList = response.body();
-                    adapter = new ViewPagerAdapter(venueList,EnterActivity.this);
-                    viewPager.setAdapter(adapter);
+                    LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                    //Fazer a verificação se tem permissao gps
+                    @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+                    if (location != null) {
+
+                        for (int i = 0; i < response.body().size(); i++) {
+
+                            checker = VenueDistanceCalculator(response.body().get(i).getPosLat(), response.body().get(i).getPosLong(), location.getLatitude(), location.getLongitude(), earthRadius);
+
+                            if (checker >= 0 && checker <= Integer.parseInt(response.body().get(i).getRange())) {
+
+                                venueList.add(response.body().get(i));
+
+                            }
+
+                        }
+
+                        adapter = new ViewPagerAdapter(venueList, EnterActivity.this);
+                        viewPager.setAdapter(adapter);
+
+                    }
+
+
                 }
 
             }
@@ -99,7 +116,11 @@ public class EnterActivity extends AppCompatActivity implements LocationListener
                 //Fazer a verificação se tem permissao gps
                 @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                 //ve qual e a ultima localizacao "conhecida"
-                txtCoord.setText("Latitude : " + location.getLatitude() + "\n Longitude : " + location.getLongitude());
+                if (location != null) {
+                    txtCoord.setText("Latitude : " + location.getLatitude() + "\n Longitude : " + location.getLongitude());
+                } else {
+                    Toast.makeText(getApplicationContext(), "Couldnt get location", Toast.LENGTH_LONG).show();
+                }
 
 
                 return false;
@@ -107,20 +128,14 @@ public class EnterActivity extends AppCompatActivity implements LocationListener
         });
 
 
-
-
-
-
-
-
         float scale = getResources().getDisplayMetrics().density;
-        int leftDpAsPixels = (int) (67*scale + 0.5f);
-        int rightDpAsPixels = (int) (45*scale + 0.5f);
+        int leftDpAsPixels = (int) (67 * scale + 0.5f);
+        int rightDpAsPixels = (int) (45 * scale + 0.5f);
 
-        viewPager.setPadding(leftDpAsPixels,0,rightDpAsPixels,0);
+        viewPager.setPadding(leftDpAsPixels, 0, rightDpAsPixels, 0);
 
-        viewPager.setClipToPadding (false);
-        viewPager.setCurrentItem(Math.round(venueList.size()/2));
+        viewPager.setClipToPadding(false);
+        viewPager.setCurrentItem(Math.round(venueList.size() / 2));
 
 
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -150,57 +165,71 @@ public class EnterActivity extends AppCompatActivity implements LocationListener
         });
 
 
+    }
+
+    private void refreshSpotToken() {
+
+        Call<ArrayList> mService = myApi.getToken(LoginActivity.loggedUserId, "application/json", LoginActivity.auth_key);
+        mService.enqueue(new Callback<ArrayList>() {
+            @Override
+            public void onResponse(Call<ArrayList> call, Response<ArrayList> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList> call, Throwable t) {
+
+            }
+        });
 
     }
 
     private double VenueDistanceCalculator(Double latitudeFrom, Double longitudeFrom, Double latitudeTo, Double longitudeTo, Double earthRadius) {
 
-         Double latFrom = Math.toRadians(latitudeFrom);
-         Double lonFrom = Math.toRadians(longitudeFrom);
-         Double latTo = Math.toRadians(latitudeTo);
-         Double lonTo = Math.toRadians(latitudeTo);
+        Double latFrom = Math.toRadians(latitudeFrom);
+        Double lonFrom = Math.toRadians(longitudeFrom);
+        Double latTo = Math.toRadians(latitudeTo);
+        Double lonTo = Math.toRadians(longitudeTo);
 
-         Double latDelta = latTo - latFrom;
-         Double lonDelta = lonTo - lonFrom;
+        Double latDelta = latTo - latFrom;
+        Double lonDelta = lonTo - lonFrom;
 
-         Double angle = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(latDelta/2), 2) + Math.cos(latFrom) * Math.cos(latTo) * Math.pow(Math.sin(lonDelta / 2 ), 2)));
+        Double angle = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(latDelta / 2), 2) + Math.cos(latFrom) * Math.cos(latTo) * Math.pow(Math.sin(lonDelta / 2), 2)));
 
         return (angle * earthRadius);
-
 
 
     }
 
 
-    public void clickedCard(int position){
+    public void clickedCard(int position) {
 
-        venue = new Venue(venueList.get(position).getId(),venueList.get(position).getName(),venueList.get(position).getDescription(),venueList.get(position).getTwitterLink(),venueList.get(position).getFacebookLink(),venueList.get(position).getInstagramLink(),venueList.get(position).getPosLat(),venueList.get(position).getPosLong(),venueList.get(position).getToken(),venueList.get(position).getQueue(),venueList.get(position).getRange(),venueList.get(position).getImagepath());
+        venue = new Venue(venueList.get(position).getId(), venueList.get(position).getName(), venueList.get(position).getVenue_owner_id(), venueList.get(position).getDescription(), venueList.get(position).getTwitterLink(), venueList.get(position).getFacebookLink(), venueList.get(position).getInstagramLink(), venueList.get(position).getPosLat(), venueList.get(position).getPosLong(), venueList.get(position).getToken(), venueList.get(position).getQueue(), venueList.get(position).getRange(), venueList.get(position).getImagepath());
 
 
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
+       LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         //Fazer a verificação se tem permissao gps
         @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
 
-        checker = VenueDistanceCalculator(venueList.get(position).getPosLat(),venueList.get(position).getPosLong(),location.getLatitude(),location.getLongitude(),earthRadius);
 
-        if(checker >=0 && checker <= Integer.parseInt(venueList.get(position).getRange())){
+        checker = VenueDistanceCalculator(venueList.get(position).getPosLat(), venueList.get(position).getPosLong(), location.getLatitude(), location.getLongitude(), earthRadius);
 
-            Toast.makeText(getApplicationContext(),"Entra só",Toast.LENGTH_LONG).show();
+        if (checker >= 0 && checker <= Integer.parseInt(venueList.get(position).getRange())) {
 
+            Bundle args = new Bundle();
+            args.putString("venue", new Gson().toJson(venue));
+
+            FragmentManager fm = getSupportFragmentManager();
+            TokenDialogFragment edf = new TokenDialogFragment();
+            edf.setArguments(args);
+            edf.show(fm, "TAG");
+
+        } else {
+            Toast.makeText(getApplicationContext(), "estas longe pra crl", Toast.LENGTH_LONG).show();
         }
-        else{
-            Toast.makeText(getApplicationContext(),"estas longe pra crl",Toast.LENGTH_LONG).show();
-        }
-/*
-        Bundle args = new Bundle();
-        args.putString("venue", new Gson().toJson(venue));
 
-        FragmentManager fm = getSupportFragmentManager();
-        TokenDialogFragment edf = new TokenDialogFragment();
-        edf.setArguments(args);
-        edf.show(fm,"TAG");*/
+
     }
 
 
@@ -208,25 +237,34 @@ public class EnterActivity extends AppCompatActivity implements LocationListener
         viewPager = findViewById(R.id.establishment_viewpager);
         txtLocalization = findViewById(R.id.txt_localization);
         txtCoord = findViewById(R.id.txt_coord);
+        //init Api
+        Retrofit retrofit = RetrofitClient.getInstance();
+        myApi = retrofit.create(RetrofitInterface.class);
     }
 
-    @Override
-    public void onLocationChanged(Location location) {
 
-        txtCoord.setText("Latitude : " + location.getLatitude() + "\n Longitude : " + location.getLongitude());}
 
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
 
-    }
 
-    @Override
-    public void onProviderEnabled(String provider) {
+        @Override
+        public void onLocationChanged(Location loc) {
 
-    }
+        }
 
-    @Override
-    public void onProviderDisabled(String provider) {
 
-    }
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+
+        }
+
 }

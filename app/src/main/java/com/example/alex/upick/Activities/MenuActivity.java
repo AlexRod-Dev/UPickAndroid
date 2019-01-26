@@ -27,6 +27,7 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 i = new Intent(MenuActivity.this,EnterActivity.class);
                 startActivity(i);
+                finish();
 
             }
         });
@@ -36,6 +37,7 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 i = new Intent(MenuActivity.this,FavoritesActivity.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -44,6 +46,7 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 i = new Intent(MenuActivity.this,ConfigurationsActivity.class);
                 startActivity(i);
+                finish();
 
             }
         });
@@ -53,7 +56,7 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 i = new Intent(MenuActivity.this,AboutActivity.class);
                 startActivity(i);
-
+                finish();
             }
         });
 

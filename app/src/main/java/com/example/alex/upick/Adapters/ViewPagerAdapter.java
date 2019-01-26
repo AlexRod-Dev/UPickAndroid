@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.alex.upick.Activities.EnterActivity;
 import com.example.alex.upick.Models.Venue;
 import com.example.alex.upick.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -56,6 +57,10 @@ public class ViewPagerAdapter extends PagerAdapter {
 
         //imageView.setImageResource(venueList.get(position).getImage());
         name.setText(venueList.get(position).getName());
+        if(!venueList.get(position).getImagepath().equals("")){
+            Picasso.get().load(venueList.get(position).getImagepath()).into(imageView);
+        }
+
 
         container.addView(view,0);
 

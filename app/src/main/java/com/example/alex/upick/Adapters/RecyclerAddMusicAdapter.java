@@ -1,5 +1,7 @@
 package com.example.alex.upick.Adapters;
 
+import android.annotation.SuppressLint;
+import android.graphics.ColorSpace;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -44,13 +46,24 @@ public class RecyclerAddMusicAdapter extends RecyclerView.Adapter<RecyclerAddMus
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final  MyViewHolder holder, int position) {
 
-        Music music = musicList.get(position);
+
+        final Music music = musicList.get(position);
         Picasso.get().load(music.getImg()).into(holder.img);
         holder.autor.setText(music.getAutor());
         holder.music.setText(music.getNome());
         holder.time.setText(music.getTime());
+
+      holder.img.setOnClickListener(new View.OnClickListener() {
+          @SuppressLint("ResourceAsColor")
+          @Override
+          public void onClick(View v) {
+
+              holder.itemView.setBackgroundColor(R.color.colorGreen);
+          }
+      });
+
     }
 
     @Override

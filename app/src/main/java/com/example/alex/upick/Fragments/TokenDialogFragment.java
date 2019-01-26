@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +16,7 @@ import com.example.alex.upick.Activities.VenueActivity;
 import com.example.alex.upick.Models.Venue;
 import com.example.alex.upick.R;
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 
 public class TokenDialogFragment extends DialogFragment {
@@ -31,11 +33,16 @@ public class TokenDialogFragment extends DialogFragment {
 
         Venue venue = new Gson().fromJson(jsonVenue, Venue.class);
 
-        String name= venue.getName();
+        String name = venue.getName();
         final String token = venue.getToken();
         final EditText txtToken = view.findViewById(R.id.txt_token);
         TextView lbNome = view.findViewById(R.id.lb_nome);
+        ImageView imgVenue = view.findViewById(R.id.img_venue);
         Button btnEnter = view.findViewById(R.id.btn_enter);
+
+        if(!venue.getImagepath().equals("")){
+            Picasso.get().load(venue.getImagepath()).into(imgVenue);
+        }
 
         lbNome.setText(name);
 

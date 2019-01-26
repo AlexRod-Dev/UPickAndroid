@@ -17,21 +17,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.alex.upick.Adapters.RecyclerListMusicAdapter;
 import com.example.alex.upick.Fragments.VenueDialogFragment;
 import com.example.alex.upick.Interfaces.RetrofitClient;
 import com.example.alex.upick.Interfaces.RetrofitInterface;
 import com.example.alex.upick.Models.CurrentSong;
+import com.example.alex.upick.Models.DAO;
+import com.example.alex.upick.Models.Favorites;
 import com.example.alex.upick.Models.Music;
 import com.example.alex.upick.Models.News;
 import com.example.alex.upick.Models.Queue;
-import com.example.alex.upick.Models.Track;
 import com.example.alex.upick.Models.Venue;
 import com.example.alex.upick.R;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
 
@@ -57,15 +56,16 @@ public class VenueActivity extends AppCompatActivity {
 
     Retrofit retrofit;
     RetrofitInterface myApi;
-    int count = 0;
+    int count = 0,user_id;
     Venue venue;
-
+    DAO operations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_venue);
 
+        operations = new DAO(this);
 
         Bundle extras = getIntent().getExtras();
 
@@ -111,7 +111,11 @@ public class VenueActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 i = new Intent(VenueActivity.this, AddMusicActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("venue", new Gson().toJson(venue));
+                i.putExtras(extras);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -119,13 +123,17 @@ public class VenueActivity extends AppCompatActivity {
         btnFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (btnFav.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.ic_icon_not_fav).getConstantState()) {
 
-                    btnFav.setImageResource(R.drawable.ic_icon_fav);
-                } else {
+                    if(operations.existFav(currentSongId)){
 
-                    btnFav.setImageResource(R.drawable.ic_icon_not_fav);
-                }
+                        operations.deleteFavorites(currentSongId);
+                        btnFav.setImageResource(R.drawable.ic_icon_not_fav);
+
+                    }else{
+                        Favorites favorites = new Favorites(0,currentSongId,Integer.parseInt(venue.getVenue_owner_id()),"",lbArtistName.getText().toString(),lbMusicName.getText().toString());
+                        operations.AddFavorites(favorites);
+                        btnFav.setImageResource(R.drawable.ic_icon_fav);
+                    }
 
             }
         });
@@ -165,7 +173,7 @@ public class VenueActivity extends AppCompatActivity {
     private void refreshSpotToken() {
 
 
-        Call<ArrayList> mService = myApi.getToken(LoginActivity.userId, "application/json", LoginActivity.auth_key);
+        Call<ArrayList> mService = myApi.getToken(LoginActivity.loggedUserId, "application/json", LoginActivity.auth_key);
         mService.enqueue(new Callback<ArrayList>() {
             @Override
             public void onResponse(Call<ArrayList> call, Response<ArrayList> response) {
@@ -250,10 +258,12 @@ public class VenueActivity extends AppCompatActivity {
                         final int listCount = response.body().size();
                     for(int i = 0; i < listCount;i++){
 
+                     user_id = response.body().get(i).getUser_id();
 
 
                         Call<JsonObject> mService = myApi.getTrack(response.body().get(i).getTrack_id(), "application/json", LoginActivity.auth_key);
                             mService.enqueue(new Callback<JsonObject>() {
+
                                 @Override
                                 public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
 
@@ -261,9 +271,12 @@ public class VenueActivity extends AppCompatActivity {
                                         String name = response.body().get("name").getAsString();
                                         String artistName = response.body().get("artists").getAsJsonArray().get(0).getAsJsonObject().get("name").getAsString();
                                         String url = response.body().get("album").getAsJsonObject().get("images").getAsJsonArray().get(0).getAsJsonObject().get("url").getAsString();
-                                        String time = response.body().get("duration_ms").getAsString();
+                                        String timems = response.body().get("duration_ms").getAsString();
+                                        String time = milisecsToTime(timems);
 
-                                        Music music = new Music(name,artistName,time,"0",url);
+
+
+                                        Music music = new Music(name,artistName,time,"0",url,user_id);
                                         musicList.add(music);
 
                                     }
@@ -301,6 +314,34 @@ public class VenueActivity extends AppCompatActivity {
 
     }
 
+    private String milisecsToTime(String milisecs) {
+
+
+        long min = (Long.parseLong(milisecs) / 1000) / 60;
+        long sec =  ((Integer.parseInt(milisecs) / 1000)% 60);
+
+        String secondsStr = Long.toString(sec);
+        String secs;
+
+        if (secondsStr.length() >= 2) {
+            secs = secondsStr.substring(0, 2);
+        } else {
+            secs = "0" + secondsStr;
+        }
+
+        String minuteStr = Long.toString(min);
+        String mins;
+
+        if(minuteStr.length() >=2){
+            mins = minuteStr.substring(0,2);
+        }else{
+            mins = "0" + minuteStr;
+        }
+
+
+        return  mins + " : " + secs;
+    }
+
     private void init() {
         fabAddMusic = findViewById(R.id.fab_add_music);
         txtMarquee = findViewById(R.id.txt_marquee);
@@ -335,8 +376,14 @@ public class VenueActivity extends AppCompatActivity {
 
             case R.id.menu_info:
 
+
+
                 FragmentManager fm = getSupportFragmentManager();
                 VenueDialogFragment vdf = new VenueDialogFragment();
+                Bundle args = new Bundle();
+                args.putString("venue", new Gson().toJson(venue));
+
+                vdf.setArguments(args);
                 vdf.show(fm, "TAG");
         }
         return super.onOptionsItemSelected(item);

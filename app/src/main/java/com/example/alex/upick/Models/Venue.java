@@ -3,6 +3,7 @@ package com.example.alex.upick.Models;
 public class Venue {
     private int id;
     private String name;
+    private String venue_owner_id;
     private String description;
     private String twitterLink;
     private String facebookLink;
@@ -14,9 +15,10 @@ public class Venue {
     private String range;
     private String imagepath;
 
-    public Venue(int id, String name, String description, String twitterLink, String facebookLink, String instagramLink, Double posLat, Double posLong, String token, String queue, String range, String imagepath) {
+    public Venue(int id, String name, String venue_owner_id, String description, String twitterLink, String facebookLink, String instagramLink, Double posLat, Double posLong, String token, String queue, String range, String imagepath) {
         this.id = id;
         this.name = name;
+        this.venue_owner_id = venue_owner_id;
         this.description = description;
         this.twitterLink = twitterLink;
         this.facebookLink = facebookLink;
@@ -43,6 +45,14 @@ public class Venue {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getVenue_owner_id() {
+        return venue_owner_id;
+    }
+
+    public void setVenue_owner_id(String venue_owner_id) {
+        this.venue_owner_id = venue_owner_id;
     }
 
     public String getDescription() {

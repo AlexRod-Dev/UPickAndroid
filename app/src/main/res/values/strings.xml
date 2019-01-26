@@ -33,6 +33,7 @@ Doner pork loin cow, chicken t-bone pork chop ham hock fatback prosciutto should
     <string name="string_add_music" translatable="false">Add Music</string>
     <string name="string_wrong_token" translatable="false">Wrong Token</string>
     <string name="string_verify_connection" translatable="false">Error, Please verify your connection or internet permissions</string>
+    <string name="string_description" translatable="false">Description :</string>
 
 
 

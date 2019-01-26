@@ -2,7 +2,6 @@ package com.example.alex.upick.Activities;
 
 
 import android.content.Intent;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -17,20 +16,11 @@ import android.widget.Toast;
 
 import com.example.alex.upick.Interfaces.RetrofitClient;
 import com.example.alex.upick.Interfaces.RetrofitInterface;
-import com.example.alex.upick.Models.News;
 import com.example.alex.upick.Models.User;
 import com.example.alex.upick.R;
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.observers.DisposableObserver;
-import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -49,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     byte[] data = null;
     String namePass;
     public static String auth_key = null;
-    public static int userId = 0;
+    public static int loggedUserId = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (response.body() != null) {
 
                             auth_key = "Bearer "+response.body().getAuth_key();
-                            userId = response.body().getId();
+                            loggedUserId = response.body().getId();
                             i = new Intent(LoginActivity.this,MenuActivity.class);
                             startActivity(i);
                             finish();
@@ -113,6 +103,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         }else{
                             Toast.makeText(getApplicationContext(),"Username or password wrong",Toast.LENGTH_LONG).show();
+                            imgLogo.clearAnimation();
                         }
 
                     }

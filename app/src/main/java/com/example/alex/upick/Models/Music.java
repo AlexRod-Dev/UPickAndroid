@@ -3,13 +3,15 @@ package com.example.alex.upick.Models;
 public class Music {
 
     private String nome,autor,time,likes,img;
+    private int user_id;
 
-    public Music(String nome, String autor, String time, String likes, String img) {
+    public Music(String nome, String autor, String time, String likes, String img, int user_id) {
         this.nome = nome;
         this.autor = autor;
         this.time = time;
         this.likes = likes;
         this.img = img;
+        this.user_id = user_id;
     }
 
     public String getNome() {
@@ -50,5 +52,13 @@ public class Music {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 }

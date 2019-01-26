@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,7 +26,7 @@ import retrofit2.Retrofit;
 
 public class SplashActivity extends AppCompatActivity {
 
-
+    ImageView imgLogo;
     SharedPreferences prefs;
     Retrofit retrofit;
     RetrofitInterface myApi;
@@ -38,10 +37,9 @@ public class SplashActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_splash);
 
-        ImageView imgLogo = findViewById(R.id.img_logo);
+        init();
 
-        retrofit = RetrofitClient.getInstance();
-        myApi = retrofit.create(RetrofitInterface.class);
+
 
         Animation animation = AnimationUtils.loadAnimation(this,R.anim.rotation_animation);
         imgLogo.startAnimation(animation);
@@ -50,7 +48,7 @@ public class SplashActivity extends AppCompatActivity {
         String lang = prefs.getString("language", "pt-PT");
         updateLanguage(this,lang);
 
-        Call<ArrayList> mService = myApi.getToken(LoginActivity.userId, "application/json", LoginActivity.auth_key);
+        Call<ArrayList> mService = myApi.getToken(LoginActivity.loggedUserId, "application/json", LoginActivity.auth_key);
         mService.enqueue(new Callback<ArrayList>() {
             @Override
             public void onResponse(Call<ArrayList> call, Response<ArrayList> response) {
@@ -66,6 +64,14 @@ public class SplashActivity extends AppCompatActivity {
         });
 
 
+
+    }
+
+    private void init() {
+       imgLogo = findViewById(R.id.img_logo);
+
+        retrofit = RetrofitClient.getInstance();
+        myApi = retrofit.create(RetrofitInterface.class);
 
     }
 

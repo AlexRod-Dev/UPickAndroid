@@ -6,16 +6,17 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    private static final String DB_NAME = "upickdb";
-    private static final int DB_VERSION = 1;
+    public static final String DB_NAME = "upickdb";
+    public static final int DB_VERSION = 1;
 
-    private static final String TABLE_FAVORITES = "favorites";
-    private static final String ID_TRACKS_FAVORITES = "track_id";
-    private static final String ID_USER_FAVORITES = "user_id";
-    private static final String ADDED_AT = "added_at";
-    private static final String ARTISTS_FAVORITES = "artists";
-    private static final String NAME_FAVORITES = "name";
-    private static final String IMAGE_FAVORITES = "image";
+    public static final String TABLE_FAVORITES = "favorites";
+    public static final String ID = "id";
+    public static final String ID_TRACKS_FAVORITES = "track_id";
+    public static final String ID_USER_FAVORITES = "user_id";
+    public static final String ADDED_AT = "added_at";
+    public static final String ARTISTS_FAVORITES = "artists";
+    public static final String NAME_FAVORITES = "name";
+    public static final String IMAGE_FAVORITES = "image";
 
 
     SQLiteDatabase database;
@@ -31,13 +32,12 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
             String createTableFavorites =  "CREATE TABLE " + TABLE_FAVORITES +
-                    "( " + ID_TRACKS_FAVORITES + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    ID_USER_FAVORITES + " INTEGER, " +
-                    ADDED_AT + " TEXT NOT NULL, " +
-                    ARTISTS_FAVORITES + " TEXT NOT NULL, " +
-                    NAME_FAVORITES + " Text NOT NULL," +
-                    IMAGE_FAVORITES + " BLOB " +
-                    ");";
+                    "( " + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    ID_TRACKS_FAVORITES + " VARCHAR(255) NOT NULL, " +
+                    ID_USER_FAVORITES + " INTEGER NOT NULL, " +
+                    ADDED_AT + " TIMESTAMP, " +
+                    ARTISTS_FAVORITES + " VARCHAR(255) NOT NULL, " +
+                    NAME_FAVORITES + " VARCHAR(255) NOT NULL"+ ");";
 
             db.execSQL(createTableFavorites);
 

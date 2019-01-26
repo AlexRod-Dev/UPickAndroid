@@ -1,5 +1,7 @@
 package com.example.alex.upick.Adapters;
 
+import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.alex.upick.Activities.LoginActivity;
 import com.example.alex.upick.Models.Music;
 import com.example.alex.upick.R;
 import com.squareup.picasso.Picasso;
@@ -45,6 +48,7 @@ private List<Music> musicList;
         return new MyViewHolder(itemView);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
@@ -54,6 +58,10 @@ private List<Music> musicList;
         holder.music.setText(music.getNome());
         holder.time.setText(music.getTime());
         holder.likes.setText(music.getLikes());
+
+     //   if(music.getUser_id() == LoginActivity.loggedUserId){
+     //       holder.itemView.setBackgroundColor(Color.BLUE);
+     //   }
     }
 
     @Override
