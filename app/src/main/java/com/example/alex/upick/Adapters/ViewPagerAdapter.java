@@ -58,7 +58,11 @@ public class ViewPagerAdapter extends PagerAdapter {
         //imageView.setImageResource(venueList.get(position).getImage());
         name.setText(venueList.get(position).getName());
         if(!venueList.get(position).getImagepath().equals("")){
-            Picasso.get().load(venueList.get(position).getImagepath()).into(imageView);
+
+           // Picasso.get().load(venueList.get(position).getImagepath()).into(imageView);
+            Picasso.get().load("http://192.168.0.101:8888/upickweb/frontend/web/img/venue_logos/"+venueList.get(position).getImagepath()).into(imageView);
+        }else{
+            Picasso.get().load("http://192.168.0.101:8888/upickweb/frontend/web/img/venue_logos/not_available.png").into(imageView);
         }
 
 
