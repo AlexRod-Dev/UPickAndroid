@@ -59,6 +59,8 @@
         android:layout_marginRight="3dp"
         android:background="@xml/design_edittext"
         android:padding="10dp"
+        android:maxLines="1"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.375"
         app:layout_constraintStart_toStartOf="parent"

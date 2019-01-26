@@ -96,7 +96,11 @@ public class AddMusicActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 searchList.clear();
-                search(txtSearch.getText().toString());
+                if(!txtSearch.getText().toString().equals("")){
+                    search(txtSearch.getText().toString());
+                    btnSearch.setEnabled(false);
+                }
+
 
 
             }
@@ -187,7 +191,7 @@ public class AddMusicActivity extends AppCompatActivity {
                                 recyclerFavList.setLayoutManager(mLayoutManager);
                                 recyclerFavList.setItemAnimator(new DefaultItemAnimator());
                                 recyclerFavList.setAdapter(adapter);
-
+                                btnSearch.setEnabled(true);
                             }
 
                         }
@@ -198,7 +202,7 @@ public class AddMusicActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<JsonObject> call, Throwable t) {
-
+                    btnSearch.setEnabled(true);
                 }
             });
 

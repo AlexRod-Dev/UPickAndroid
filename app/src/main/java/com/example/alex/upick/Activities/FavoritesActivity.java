@@ -1,5 +1,6 @@
 package com.example.alex.upick.Activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -33,6 +34,7 @@ public class FavoritesActivity extends AppCompatActivity {
     DAO operations;
     Retrofit retrofit;
     RetrofitInterface myApi;
+    Intent i;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,6 +126,14 @@ public class FavoritesActivity extends AppCompatActivity {
 
 
         return  mins + " : " + secs;
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        i = new Intent(FavoritesActivity.this, MenuActivity.class);
+        startActivity(i);
+        finish();
     }
 
 

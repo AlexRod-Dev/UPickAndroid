@@ -3,6 +3,7 @@ package com.example.alex.upick.Activities;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -42,6 +43,7 @@ public class EnterActivity extends AppCompatActivity implements LocationListener
     RetrofitInterface myApi;
     Venue venue;
     Location location;
+    Intent i;
     double earthRadius = 6371000, checker;
 
 
@@ -266,5 +268,13 @@ public class EnterActivity extends AppCompatActivity implements LocationListener
         public void onProviderDisabled(String provider) {
 
         }
+
+    @Override
+    public void onBackPressed()
+    {
+        i = new Intent(EnterActivity.this, MenuActivity.class);
+        startActivity(i);
+        finish();
+    }
 
 }

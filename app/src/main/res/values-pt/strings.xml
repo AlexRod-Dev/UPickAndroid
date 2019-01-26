@@ -25,7 +25,7 @@ Doner pork loin cow, chicken t-bone pork chop ham hock fatback prosciutto should
     <string name="string_current_language" translatable="false">Idioma atual :</string>
     <string name="string_footer" translatable="false">Rodapé</string>
     <string name="string_notifications" translatable="false">Notificações</string>
-    <string name="string_clear_data" translatable="false">Clear data</string>
+    <string name="string_clear_data" translatable="false">Predefinir dados</string>
     <string name="string_footer_enabled" translatable="false">Ativar rodapé com noticias do estabelecimento</string>
     <string name="string_notification_enabled" translatable="false">Enviar notificação quando a sua musica for a proxima a tocar</string>
     <string name="string_add_music" translatable="false">Adicionar Musica</string>

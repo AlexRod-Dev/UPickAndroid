@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                 myApi = retrofit.create(RetrofitInterface.class);
 
                 namePass = txtUserName.getText() + ":" + txtPassword.getText();
-
+                btnLogin.setEnabled(false);
 
                 try {
                     data = namePass.getBytes("UTF-8");
@@ -104,6 +104,7 @@ public class LoginActivity extends AppCompatActivity {
                         }else{
                             Toast.makeText(getApplicationContext(),"Username or password wrong",Toast.LENGTH_LONG).show();
                             imgLogo.clearAnimation();
+                            btnLogin.setEnabled(true);
                         }
 
                     }
@@ -112,6 +113,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onFailure(Call<User> call, Throwable t) {
                         Toast.makeText(getApplicationContext(),R.string.string_verify_connection,Toast.LENGTH_LONG).show();
                         imgLogo.clearAnimation();
+                        btnLogin.setEnabled(true);
                     }
 
 

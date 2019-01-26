@@ -236,6 +236,11 @@ public class VenueActivity extends AppCompatActivity {
                 if(response.body() != null) {
                     currentSongId = response.body().getTrack_id();
                     getTrack();
+                    if(operations.existFav(currentSongId) == true){
+                       btnFav.setImageResource(R.drawable.ic_icon_fav);
+                    }else{
+                        btnFav.setImageResource(R.drawable.ic_icon_not_fav);
+                    }
                 }
 
             }
@@ -387,5 +392,13 @@ public class VenueActivity extends AppCompatActivity {
                 vdf.show(fm, "TAG");
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        i = new Intent(VenueActivity.this, MenuActivity.class);
+        startActivity(i);
+        finish();
     }
 }

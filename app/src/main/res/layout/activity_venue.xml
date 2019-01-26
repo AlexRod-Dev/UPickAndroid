@@ -112,7 +112,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:paddingRight="8dp"
-                    android:text="100" />
+                    android:text="0" />
 
                 <ImageView
                     android:id="@+id/btn_count_down"
@@ -125,7 +125,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="100" />
+                    android:text="0" />
 
             </LinearLayout>
 

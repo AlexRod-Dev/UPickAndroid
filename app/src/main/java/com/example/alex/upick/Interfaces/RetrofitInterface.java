@@ -1,6 +1,7 @@
 package com.example.alex.upick.Interfaces;
 
 import com.example.alex.upick.Models.CurrentSong;
+import com.example.alex.upick.Models.Music;
 import com.example.alex.upick.Models.News;
 import com.example.alex.upick.Models.Queue;
 import com.example.alex.upick.Models.Track;
@@ -42,6 +43,9 @@ public interface RetrofitInterface {
 
         @GET("currentsong/{venueid}/getcurrentsong")
         Call<CurrentSong> getCurrentSong(@Path("venueid") int id, @Header("accept") String accept, @Header("authorization") String auth_key);
+
+        @GET("queue/{trackid}/{userid}/{venueid}/addtoqueue")
+        Call<String> addToQueue(@Path("trackid") String track_id, @Path("userid") int user_id, @Path("venueid") int venue_id,@Header("accept") String accept, @Header("authorization") String auth_key);
 
         @FormUrlEncoded
         @POST("spotify/refresh")

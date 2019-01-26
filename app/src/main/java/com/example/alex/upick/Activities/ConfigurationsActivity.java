@@ -214,7 +214,13 @@ public class ConfigurationsActivity extends AppCompatActivity {
         cbNotifications = findViewById(R.id.cb_notification);
 
     }
-
+    @Override
+    public void onBackPressed()
+    {
+        i = new Intent(ConfigurationsActivity.this, MenuActivity.class);
+        startActivity(i);
+        finish();
+    }
 
 
 }
