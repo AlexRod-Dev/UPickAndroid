@@ -1,11 +1,13 @@
 package com.example.alex.upick.Activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -17,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.alex.upick.Adapters.RecyclerListMusicAdapter;
 import com.example.alex.upick.Fragments.VenueDialogFragment;
@@ -48,17 +51,18 @@ public class VenueActivity extends AppCompatActivity {
     TextView txtMarquee,lbMusicName,lbArtistName;
     Intent i;
     RecyclerView recyclerListMusic;
-    RecyclerListMusicAdapter adapter;
     List<Music> musicList = new ArrayList<>();
     SharedPreferences prefs;
     String jsonVenue;
     String currentSongId;
-
+    String track_id;
     Retrofit retrofit;
     RetrofitInterface myApi;
     int count = 0,user_id;
     Venue venue;
     DAO operations;
+    AlertDialog.Builder builder;
+    Music musicl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -265,9 +269,10 @@ public class VenueActivity extends AppCompatActivity {
 
                      user_id = response.body().get(i).getUser_id();
 
-
-                        Call<JsonObject> mService = myApi.getTrack(response.body().get(i).getTrack_id(), "application/json", LoginActivity.auth_key);
+                                Call<JsonObject> mService = myApi.getTrack(response.body().get(i).getTrack_id(), "application/json", LoginActivity.auth_key);
                             mService.enqueue(new Callback<JsonObject>() {
+
+
 
                                 @Override
                                 public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
@@ -279,21 +284,64 @@ public class VenueActivity extends AppCompatActivity {
                                         String timems = response.body().get("duration_ms").getAsString();
                                         String time = milisecsToTime(timems);
 
+                                        track_id = response.body().get("id").getAsString();
 
 
-                                        Music music = new Music(name,artistName,time,"0",url,user_id);
+                                        Music music = new Music(name,artistName,time,"0",url,track_id,user_id);
                                         musicList.add(music);
 
                                     }
 
 
                                     if(musicList.size()==listCount){
-                                        adapter = new RecyclerListMusicAdapter(musicList);
+
                                         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
                                         recyclerListMusic.setLayoutManager(mLayoutManager);
                                         recyclerListMusic.setItemAnimator(new DefaultItemAnimator());
-                                        recyclerListMusic.setAdapter(adapter);
-                                    }
+                                        recyclerListMusic.setAdapter(new RecyclerListMusicAdapter(musicList, new RecyclerListMusicAdapter.OnItemClickListener() {
+                                            @Override
+                                            public void onItemClick(Music music) {
+
+                                                musicl = music;
+                                                if(operations.existFav(musicl.getTrack_id())){
+                                                        Toast.makeText(getApplicationContext(),R.string.string_already_favorites,Toast.LENGTH_LONG).show();
+                                                }else{
+
+                                                    builder = new AlertDialog.Builder(VenueActivity.this);
+                                                    builder.setTitle(R.string.string_add_favorite)
+                                                            .setMessage(music.getNome() +" \n " + music.getAutor())
+                                                            .setPositiveButton(R.string.string_yes, new DialogInterface.OnClickListener() {
+                                                                public void onClick(DialogInterface dialog, int which) {
+
+                                                                    if(operations.existFav(musicl.getTrack_id())){
+
+                                                                    }else{
+                                                                        Favorites fav = new Favorites(0,musicl.getTrack_id(),musicl.getUser_id(),"",musicl.getAutor(),musicl.getNome());
+
+                                                                        operations.AddFavorites(fav);
+                                                                        Toast.makeText(getApplicationContext(),R.string.string_favorite_added, Toast.LENGTH_LONG).show();
+
+                                                                    }
+
+
+                                                                }
+                                                            })
+                                                            .setNegativeButton(R.string.string_no, new DialogInterface.OnClickListener() {
+                                                                public void onClick(DialogInterface dialog, int which) {
+
+                                                                }
+                                                            })
+                                                            .setIcon(R.drawable.ic_icon_fav)
+                                                            .show();
+
+
+                                                }
+
+
+                                            }
+                                        }));
+
+                                        }
 
 
                                 }

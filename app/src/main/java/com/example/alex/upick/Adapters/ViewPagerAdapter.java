@@ -61,9 +61,9 @@ public class ViewPagerAdapter extends PagerAdapter {
         if(!venueList.get(position).getImagepath().equals("")){
 
            // Picasso.get().load(venueList.get(position).getImagepath()).into(imageView);
-            Picasso.get().load(LoginActivity.ipServidor+"/frontend/web/img/venue_logos/"+venueList.get(position).getImagepath()).into(imageView);
+            Picasso.get().load(LoginActivity.serverIp +"/frontend/web/img/venue_logos/"+venueList.get(position).getImagepath()).into(imageView);
         }else{
-            Picasso.get().load(LoginActivity.ipServidor+"/frontend/web/img/venue_logos/not_available.png").into(imageView);
+            Picasso.get().load(LoginActivity.serverIp +"/frontend/web/img/venue_logos/not_available.png").into(imageView);
         }
 
 

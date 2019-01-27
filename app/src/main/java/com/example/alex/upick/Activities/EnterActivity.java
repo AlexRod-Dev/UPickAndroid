@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -268,6 +269,20 @@ public class EnterActivity extends AppCompatActivity implements LocationListener
         public void onProviderDisabled(String provider) {
 
         }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // app icon in action bar clicked; goto parent activity.
+                i = new Intent(EnterActivity.this, MenuActivity.class);
+                startActivity(i);
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     @Override
     public void onBackPressed()

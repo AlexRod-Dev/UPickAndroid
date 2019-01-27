@@ -42,10 +42,10 @@ public class TokenDialogFragment extends DialogFragment {
         Button btnEnter = view.findViewById(R.id.btn_enter);
 
         if(!venue.getImagepath().equals("")){
-            Picasso.get().load(LoginActivity.ipServidor+"/frontend/web/img/venue_logos/"+venue.getImagepath()).into(imgVenue);
+            Picasso.get().load(LoginActivity.serverIp +"/frontend/web/img/venue_logos/"+venue.getImagepath()).into(imgVenue);
 
         }else{
-            Picasso.get().load(LoginActivity.ipServidor+"/frontend/web/img/venue_logos/not_available.png").into(imgVenue);
+            Picasso.get().load(LoginActivity.serverIp +"/frontend/web/img/venue_logos/not_available.png").into(imgVenue);
         }
 
         lbNome.setText(name);

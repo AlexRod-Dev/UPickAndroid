@@ -12,6 +12,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -214,12 +215,25 @@ public class ConfigurationsActivity extends AppCompatActivity {
         cbNotifications = findViewById(R.id.cb_notification);
 
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // app icon in action bar clicked; goto parent activity.
+                i = new Intent(ConfigurationsActivity.this, MenuActivity.class);
+                startActivity(i);
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     @Override
     public void onBackPressed()
     {
-        i = new Intent(ConfigurationsActivity.this, MenuActivity.class);
-        startActivity(i);
-        finish();
+
     }
 
 

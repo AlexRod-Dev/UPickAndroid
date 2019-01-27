@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -80,6 +81,20 @@ public class AboutActivity extends AppCompatActivity {
         cardInstructions = findViewById(R.id.card_instructions);
         txtAbout = findViewById(R.id.txt_about);
         txtInstructions = findViewById(R.id.txt_instructions);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // app icon in action bar clicked; goto parent activity.
+                i = new Intent(AboutActivity.this, MenuActivity.class);
+                startActivity(i);
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override

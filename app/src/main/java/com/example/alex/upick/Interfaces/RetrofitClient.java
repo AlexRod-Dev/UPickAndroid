@@ -15,7 +15,7 @@ public class RetrofitClient {
                     //10.0.2.2  -> ip para emulador//
                     //192.168.0.101 -> quarto//
                     //192.168.1.xxx -> sala//
-                    .baseUrl(LoginActivity.ipServidor+"/api/web/v1/")
+                    .baseUrl(LoginActivity.serverIp +"/api/web/v1/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build();

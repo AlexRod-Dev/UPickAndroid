@@ -16,24 +16,13 @@ import java.util.List;
 
 public class RecyclerFavListMusicAdapter extends RecyclerView.Adapter<RecyclerFavListMusicAdapter.MyViewHolder> {
     private List<Music> musicList;
+    private OnItemClickListener listener;
 
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
-        public ImageView img,fav;
-        public TextView music,autor,time;
 
-        public MyViewHolder(View view){
-            super(view);
-            img = view.findViewById(R.id.img);
-            music = view.findViewById(R.id.music);
-            autor = view.findViewById(R.id.autor);
-            time = view.findViewById(R.id.time);
-            fav = view.findViewById(R.id.btn_fav_favorites);
-        }
-    }
-
-    public RecyclerFavListMusicAdapter(List<Music> musicList) {
+    public RecyclerFavListMusicAdapter(List<Music> musicList, OnItemClickListener listener) {
         this.musicList = musicList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -47,16 +36,46 @@ public class RecyclerFavListMusicAdapter extends RecyclerView.Adapter<RecyclerFa
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        Music music = musicList.get(position);
-        Picasso.get().load(music.getImg()).into(holder.img);
-        holder.autor.setText(music.getAutor());
-        holder.music.setText(music.getNome());
-        holder.time.setText(music.getTime());
+
+        holder.bind(musicList.get(position),listener);
+
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder{
+        public ImageView img,fav;
+        public TextView nome,autor,time;
+
+        public MyViewHolder(View view){
+            super(view);
+            img = view.findViewById(R.id.img);
+            nome = view.findViewById(R.id.music);
+            autor = view.findViewById(R.id.autor);
+            time = view.findViewById(R.id.time);
+            fav = view.findViewById(R.id.btn_fav_favorites);
+
+        }
+        public void bind(final Music music, final OnItemClickListener listener){
+
+            Picasso.get().load(music.getImg()).into(img);
+            autor.setText(music.getAutor());
+            nome.setText(music.getNome());
+            time.setText(music.getTime());
+            itemView.setOnClickListener(new View.OnClickListener(){
+                @Override public void onClick(View v) {
+                    listener.onItemClick(music);
+                }
+            });
+        }
+
     }
 
     @Override
     public int getItemCount() {
         return musicList.size();
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Music music);
     }
 }
 

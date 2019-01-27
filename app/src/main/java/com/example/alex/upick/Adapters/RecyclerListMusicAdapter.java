@@ -1,7 +1,5 @@
 package com.example.alex.upick.Adapters;
 
-import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.alex.upick.Activities.LoginActivity;
 import com.example.alex.upick.Models.Music;
 import com.example.alex.upick.R;
 import com.squareup.picasso.Picasso;
@@ -19,25 +16,13 @@ import java.util.List;
 
 public class RecyclerListMusicAdapter extends RecyclerView.Adapter<RecyclerListMusicAdapter.MyViewHolder> {
 private List<Music> musicList;
+private OnItemClickListener listener;
 
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
-        public ImageView img;
-        public TextView music,autor,time,likes;
 
-        public MyViewHolder(View view){
-            super(view);
-            img = view.findViewById(R.id.img);
-            music = view.findViewById(R.id.music);
-            autor = view.findViewById(R.id.autor);
-            time = view.findViewById(R.id.time);
-            likes = view.findViewById(R.id.likes);
-
-        }
-    }
-
-    public RecyclerListMusicAdapter(List<Music> musicList) {
+    public RecyclerListMusicAdapter(List<Music> musicList, OnItemClickListener listener) {
         this.musicList = musicList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -52,23 +37,49 @@ private List<Music> musicList;
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        Music music = musicList.get(position);
-        Picasso.get().load(music.getImg()).into(holder.img);
-        holder.autor.setText(music.getAutor());
-        holder.music.setText(music.getNome());
-        holder.time.setText(music.getTime());
-        holder.likes.setText(music.getLikes());
-
-     //   if(music.getUser_id() == LoginActivity.loggedUserId){
-     //       holder.itemView.setBackgroundColor(Color.BLUE);
-     //   }
+        holder.bind(musicList.get(position),listener);
     }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder{
+        public ImageView img;
+        public TextView nome,autor,time,likes;
+
+        public MyViewHolder(View view){
+            super(view);
+            img = view.findViewById(R.id.img);
+            nome = view.findViewById(R.id.music);
+            autor = view.findViewById(R.id.autor);
+            time = view.findViewById(R.id.time);
+            likes = view.findViewById(R.id.likes);
+
+        }
+
+        public void bind(final Music music, final OnItemClickListener listener){
+
+            Picasso.get().load(music.getImg()).into(img);
+            autor.setText(music.getAutor());
+            nome.setText(music.getNome());
+            time.setText(music.getTime());
+            likes.setText(music.getLikes());
+            itemView.setOnClickListener(new View.OnClickListener(){
+                @Override public void onClick(View v) {
+                    listener.onItemClick(music);
+                }
+            });
+        }
+
+    }
+
+
 
     @Override
     public int getItemCount() {
         return musicList.size();
     }
 
+    public interface OnItemClickListener {
+        void onItemClick(Music music);
+    }
 
 
 

@@ -32,7 +32,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
             String createTableFavorites =  "CREATE TABLE " + TABLE_FAVORITES +
-                    "( " + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "( " + ID + " INTEGER PRIMARY KEY, " +
                     ID_TRACKS_FAVORITES + " VARCHAR(255) NOT NULL, " +
                     ID_USER_FAVORITES + " INTEGER NOT NULL, " +
                     ADDED_AT + " TIMESTAMP, " +

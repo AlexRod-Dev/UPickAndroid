@@ -27,7 +27,6 @@ public class DAO {
     public void AddFavorites(Favorites favorites){
         db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(DBHelper.ID,favorites.getId());
         values.put(DBHelper.ID_TRACKS_FAVORITES,favorites.getTrack_id());
         values.put(DBHelper.ID_USER_FAVORITES,favorites.getUser_id());
         values.put(DBHelper.ADDED_AT,favorites.getAdded_at());

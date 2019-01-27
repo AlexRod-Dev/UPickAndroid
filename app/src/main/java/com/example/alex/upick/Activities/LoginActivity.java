@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
     String namePass;
     public static String auth_key = null;
     public static int loggedUserId = 0;
-    public static String ipServidor = "http://192.168.0.101:8888/upickweb";
+    public static String serverIp = "http://192.168.0.101:8888/upickweb";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

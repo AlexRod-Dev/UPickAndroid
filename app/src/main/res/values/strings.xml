@@ -34,6 +34,17 @@ Doner pork loin cow, chicken t-bone pork chop ham hock fatback prosciutto should
     <string name="string_wrong_token" translatable="false">Wrong Token</string>
     <string name="string_verify_connection" translatable="false">Error, Please verify your connection or internet permissions</string>
     <string name="string_description" translatable="false">Description :</string>
+    <string name="string_yes" translatable="false">Yes</string>
+    <string name="string_no" translatable="false">No</string>
+    <string name="string_add_favorite" translatable="false">Add to favorites?</string>
+    <string name="string_ask_add" translatable="false">Add to queue?</string>
+    <string name="string_favorite_added" translatable="false">Music added to favorites</string>
+    <string name="string_already_favorites" translatable="false">Music already in favorites</string>
+    <string name="string_remove_favorites" translatable="false">Remove from favorites?</string>
+    <string name="string_removed_favorites" translatable="false">Music removed from favorites</string>
+    <string name="string_queue" translatable="false">Queue</string>
+    <string name="string_where_add" translatable="false">Add music where?</string>
+
 
 
 
