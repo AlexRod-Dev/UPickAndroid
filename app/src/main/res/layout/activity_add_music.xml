@@ -11,7 +11,7 @@
     <android.support.v7.widget.CardView
         android:id="@+id/cardView3"
         android:layout_width="0dp"
-        android:layout_height="150dp"
+        android:layout_height="125dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
@@ -85,76 +85,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
-            <HorizontalScrollView
-                android:id="@+id/horizontalScrollView"
-                android:layout_width="match_parent"
-                android:layout_height="42dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:scrollbars="none"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_search">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/button4"
-                        android:layout_width="75dp"
-                        android:layout_height="30dp"
-                        android:layout_marginRight="2dp"
-                        android:background="@xml/design_genre_button"
-                        android:text="Hip-Hop"
-                        android:textSize="11sp" />
-
-                    <Button
-                        android:id="@+id/button"
-                        android:layout_width="75dp"
-                        android:layout_height="30dp"
-                        android:layout_marginRight="2dp"
-                        android:background="@xml/design_genre_button"
-                        android:text="Pop"
-                        android:textSize="11sp" />
-
-                    <Button
-                        android:id="@+id/button5"
-                        android:layout_width="75dp"
-                        android:layout_height="30dp"
-                        android:layout_marginRight="2dp"
-                        android:layout_weight="1"
-                        android:background="@xml/design_genre_button"
-                        android:text="Eletronic"
-                        android:textSize="11sp" />
-
-                    <Button
-                        android:id="@+id/button6"
-                        android:layout_width="75dp"
-                        android:layout_height="30dp"
-                        android:layout_marginRight="2dp"
-                        android:layout_weight="1"
-                        android:background="@xml/design_genre_button"
-                        android:text="Rock"
-                        android:textSize="11sp" />
-
-                    <Button
-                        android:id="@+id/button7"
-                        android:layout_width="75dp"
-                        android:layout_height="30dp"
-                        android:layout_marginRight="2dp"
-                        android:layout_weight="1"
-                        android:background="@xml/design_genre_button"
-                        android:text="Funk"
-                        android:textSize="11sp" />
-
-                </LinearLayout>
-            </HorizontalScrollView>
-
             <Button
                 android:id="@+id/btn_search"
                 android:layout_width="wrap_content"
@@ -162,9 +92,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
                 android:text="Search"
-                app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/txt_search"

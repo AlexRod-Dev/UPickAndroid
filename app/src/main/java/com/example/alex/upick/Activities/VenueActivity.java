@@ -58,7 +58,7 @@ public class VenueActivity extends AppCompatActivity {
     String track_id;
     Retrofit retrofit;
     RetrofitInterface myApi;
-    int count = 0,user_id;
+    int count = 0,user_id,queue_id;
     Venue venue;
     DAO operations;
     AlertDialog.Builder builder;
@@ -259,6 +259,7 @@ public class VenueActivity extends AppCompatActivity {
 
     private void getQueue() {
 
+        //tryJSONOBJECT
         Call<ArrayList<Queue>> mService = myApi.getQueue(venue.getId(), "application/json", LoginActivity.auth_key);
         mService.enqueue(new Callback<ArrayList<Queue>>() {
             @Override
@@ -268,6 +269,8 @@ public class VenueActivity extends AppCompatActivity {
                     for(int i = 0; i < listCount;i++){
 
                      user_id = response.body().get(i).getUser_id();
+                     queue_id = response.body().get(i).getId();
+
 
                                 Call<JsonObject> mService = myApi.getTrack(response.body().get(i).getTrack_id(), "application/json", LoginActivity.auth_key);
                             mService.enqueue(new Callback<JsonObject>() {
@@ -302,7 +305,24 @@ public class VenueActivity extends AppCompatActivity {
                                             @Override
                                             public void onItemClick(Music music) {
 
-                                                musicl = music;
+                                                Call<String> mService = myApi.addvote(queue_id,user_id, "application/json", LoginActivity.auth_key);
+                                                mService.enqueue(new Callback<String>() {
+
+
+                                                    @Override
+                                                    public void onResponse(Call<String> call, Response<String> response) {
+                                                        Toast.makeText(VenueActivity.this, response.body(), Toast.LENGTH_SHORT).show();
+                                                    }
+
+                                                    @Override
+                                                    public void onFailure(Call<String> call, Throwable t) {
+
+                                                    }
+                                                });
+
+
+
+                                             /*   musicl = music;
                                                 if(operations.existFav(musicl.getTrack_id())){
                                                         Toast.makeText(getApplicationContext(),R.string.string_already_favorites,Toast.LENGTH_LONG).show();
                                                 }else{
@@ -335,11 +355,12 @@ public class VenueActivity extends AppCompatActivity {
                                                             .show();
 
 
-                                                }
+                                                }*/
 
 
                                             }
                                         }));
+
 
                                         }
 

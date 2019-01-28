@@ -235,6 +235,50 @@ public class AddMusicActivity extends AppCompatActivity {
                             @Override
                             public void onItemClick(Music music) {
 
+
+
+                                builder = new AlertDialog.Builder(AddMusicActivity.this);
+                                builder.setTitle("adicionar à lista de reprodução?")
+                                        .setMessage(music.getNome() +" \n " + music.getAutor())
+                                        .setPositiveButton(R.string.string_yes, new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+
+                                                Call<String> mService = myApi.addToQueue(musicl.getTrack_id(),musicl.getUser_id(),venue.getId(), "application/json", LoginActivity.auth_key);
+                                                mService.enqueue(new Callback<String>() {
+
+
+                                                    @Override
+                                                    public void onResponse(Call<String> call, Response<String> response) {
+
+                                                        if(response.body().equals("success")){
+                                                            Toast.makeText(getApplicationContext(),"Musica adicionada à lista de reprodução", Toast.LENGTH_LONG).show();
+
+                                                        }else{
+                                                            Toast.makeText(getApplicationContext(),"Não foi possivel adicionar", Toast.LENGTH_LONG).show();
+
+                                                        }
+
+                                                    }
+
+                                                    @Override
+                                                    public void onFailure(Call<String> call, Throwable t) {
+
+                                                    }
+                                                });
+
+
+                                            }
+                                        })
+                                        .setNegativeButton(R.string.string_no, new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+
+
+
+
+                                            }
+                                        })
+                                        .setIcon(R.drawable.ic_fav_add_dark)
+                                        .show();
                             }
                         }));
                     }
@@ -269,7 +313,7 @@ public class AddMusicActivity extends AppCompatActivity {
 
                     if (response.body().getAsJsonObject().get("tracks").getAsJsonObject().get("items").getAsJsonArray().size() >= 5) {
 
-                        for (int i = 0; i < 5; i++) {
+                        for (int i = 0; i < 7; i++) {
 
                             String name = response.body().getAsJsonObject().get("tracks").getAsJsonObject().get("items").getAsJsonArray().get(i).getAsJsonObject().get("name").getAsString();
                             String autor = response.body().getAsJsonObject().get("tracks").getAsJsonObject().get("items").getAsJsonArray().get(i).getAsJsonObject().get("artists").getAsJsonArray().get(0).getAsJsonObject().get("name").getAsString();
@@ -281,7 +325,7 @@ public class AddMusicActivity extends AppCompatActivity {
                             Music music = new Music(name, autor, time, "0", img,track_id,LoginActivity.loggedUserId);
                             searchList.add(music);
 
-                            if (searchList.size() == 5) {
+                            if (searchList.size() == 7) {
 
                                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
                                 recyclerAddList.setLayoutManager(mLayoutManager);
@@ -291,11 +335,7 @@ public class AddMusicActivity extends AppCompatActivity {
                                     public void onItemClick(Music music) {
 
                                         musicl = music;
-                                        if(operations.existFav(musicl.getTrack_id())){
 
-                                            Toast.makeText(getApplicationContext(),R.string.string_already_favorites,Toast.LENGTH_LONG).show();
-
-                                        }else{
 
                                             builder = new AlertDialog.Builder(AddMusicActivity.this);
                                             builder.setTitle("adicionar onde")
@@ -304,6 +344,7 @@ public class AddMusicActivity extends AppCompatActivity {
                                                         public void onClick(DialogInterface dialog, int which) {
 
                                                             if(operations.existFav(musicl.getTrack_id())){
+                                                                Toast.makeText(getApplicationContext(),R.string.string_already_favorites,Toast.LENGTH_LONG).show();
 
                                                             }else{
                                                                 Favorites fav = new Favorites(0,musicl.getTrack_id(),musicl.getUser_id(),"",musicl.getAutor(),musicl.getNome());
@@ -319,12 +360,36 @@ public class AddMusicActivity extends AppCompatActivity {
                                                     .setNegativeButton("Queue", new DialogInterface.OnClickListener() {
                                                         public void onClick(DialogInterface dialog, int which) {
 
+                                                            Call<String> mService = myApi.addToQueue(musicl.getTrack_id(),musicl.getUser_id(),venue.getId(), "application/json", LoginActivity.auth_key);
+                                                            mService.enqueue(new Callback<String>() {
+
+
+                                                                @Override
+                                                                public void onResponse(Call<String> call, Response<String> response) {
+
+                                                                if(response.body().equals("success")){
+                                                                    Toast.makeText(getApplicationContext(),"Musica adicionada à lista de reprodução", Toast.LENGTH_LONG).show();
+
+                                                                }else{
+                                                                    Toast.makeText(getApplicationContext(),"Não foi possivel adicionar", Toast.LENGTH_LONG).show();
+
+                                                                }
+
+                                                                }
+
+                                                                @Override
+                                                                public void onFailure(Call<String> call, Throwable t) {
+
+                                                                }
+                                                            });
+
+
                                                         }
                                                     })
-                                                    .setIcon(R.drawable.ic_fav_add)
+                                                    .setIcon(R.drawable.ic_fav_add_dark)
                                                     .show();
 
-                                        }
+
 
 
 

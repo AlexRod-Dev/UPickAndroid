@@ -14,9 +14,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,14 +37,13 @@ import retrofit2.Retrofit;
 public class EnterActivity extends AppCompatActivity implements LocationListener {
     ViewPager viewPager;
     ArrayList<Venue> venueList = new ArrayList<>();
+    Button btnScan;
     ViewPagerAdapter adapter;
-    EditText txtLocalization;
-    TextView txtCoord;
     RetrofitInterface myApi;
     Venue venue;
-    Location location;
     Intent i;
     double earthRadius = 6371000, checker;
+
 
 
     @Override
@@ -62,9 +60,18 @@ public class EnterActivity extends AppCompatActivity implements LocationListener
         }
 
 
+
         init();
         refreshSpotToken();
+        getLocation();
 
+
+        btnScan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getLocation();
+            }
+        });
 
         Call<ArrayList<Venue>> mService = myApi.getVenues("application/json", LoginActivity.auth_key);
         mService.enqueue(new Callback<ArrayList<Venue>>() {
@@ -110,25 +117,6 @@ public class EnterActivity extends AppCompatActivity implements LocationListener
         });
 
 
-        txtLocalization.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-                //Fazer a verificação se tem permissao gps
-                @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                //ve qual e a ultima localizacao "conhecida"
-                if (location != null) {
-                    txtCoord.setText("Latitude : " + location.getLatitude() + "\n Longitude : " + location.getLongitude());
-                } else {
-                    Toast.makeText(getApplicationContext(), "Couldnt get location", Toast.LENGTH_LONG).show();
-                }
-
-
-                return false;
-            }
-        });
 
 
         float scale = getResources().getDisplayMetrics().density;
@@ -166,6 +154,23 @@ public class EnterActivity extends AppCompatActivity implements LocationListener
                 //ignorar
             }
         });
+
+
+    }
+
+    private void getLocation() {
+
+
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        //Fazer a verificação se tem permissao gps
+        @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+        if(location!= null){
+            Toast.makeText(getApplicationContext(), "Location succesfully found", Toast.LENGTH_SHORT).show();
+        }else{
+
+            Toast.makeText(getApplicationContext(), "Couldn't get location", Toast.LENGTH_SHORT).show();
+        }
 
 
     }
@@ -229,7 +234,7 @@ public class EnterActivity extends AppCompatActivity implements LocationListener
             edf.show(fm, "TAG");
 
         } else {
-            Toast.makeText(getApplicationContext(), "estas longe pra crl", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Aproxime-se do estabelecimento", Toast.LENGTH_LONG).show();
         }
 
 
@@ -238,8 +243,7 @@ public class EnterActivity extends AppCompatActivity implements LocationListener
 
     private void init() {
         viewPager = findViewById(R.id.establishment_viewpager);
-        txtLocalization = findViewById(R.id.txt_localization);
-        txtCoord = findViewById(R.id.txt_coord);
+        btnScan = findViewById(R.id.btn_scan);
         //init Api
         Retrofit retrofit = RetrofitClient.getInstance();
         myApi = retrofit.create(RetrofitInterface.class);
@@ -251,6 +255,8 @@ public class EnterActivity extends AppCompatActivity implements LocationListener
 
         @Override
         public void onLocationChanged(Location loc) {
+
+
 
         }
 

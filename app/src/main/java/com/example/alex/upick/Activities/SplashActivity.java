@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.alex.upick.Interfaces.RetrofitClient;
 import com.example.alex.upick.Interfaces.RetrofitInterface;
@@ -30,6 +31,7 @@ public class SplashActivity extends AppCompatActivity {
     SharedPreferences prefs;
     Retrofit retrofit;
     RetrofitInterface myApi;
+    TextView lbHint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +71,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private void init() {
        imgLogo = findViewById(R.id.img_logo);
-
+        lbHint = findViewById(R.id.lb_hint);
         retrofit = RetrofitClient.getInstance();
         myApi = retrofit.create(RetrofitInterface.class);
 

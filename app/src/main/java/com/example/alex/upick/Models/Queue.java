@@ -5,11 +5,13 @@ public class Queue {
     private int id;
     private String track_id;
     private int user_id;
+    private int votes;
 
-    public Queue(int id, String track_id, int user_id) {
+    public Queue(int id, String track_id, int user_id, int votes) {
         this.id = id;
         this.track_id = track_id;
         this.user_id = user_id;
+        this.votes = votes;
     }
 
     public int getId() {
@@ -34,5 +36,13 @@ public class Queue {
 
     public void setUser_id(int user_id) {
         this.user_id = user_id;
+    }
+
+    public int getVotes() {
+        return votes;
+    }
+
+    public void setVotes(int votes) {
+        this.votes = votes;
     }
 }

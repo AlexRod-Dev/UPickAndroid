@@ -42,4 +42,5 @@ Doner pork loin cow, chicken t-bone pork chop ham hock fatback prosciutto should
     <string name="string_removed_favorites" translatable="false">Musica retirada dos favoritos</string>
     <string name="string_queue" translatable="false">Lista</string>
     <string name="string_where_add" translatable="false">Add music where?</string>
+    <string name="string_hint" translatable="false">A tentar estabelecer ligação ao servidor</string>
 </resources>

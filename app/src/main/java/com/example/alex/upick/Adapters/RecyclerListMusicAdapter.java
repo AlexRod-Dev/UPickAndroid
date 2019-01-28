@@ -61,6 +61,13 @@ private OnItemClickListener listener;
             nome.setText(music.getNome());
             time.setText(music.getTime());
             likes.setText(music.getLikes());
+            likes.setOnClickListener(new View.OnClickListener(){
+                @Override public void onClick(View v) {
+                    listener.onItemClick(music);
+                }
+            });
+
+
             itemView.setOnClickListener(new View.OnClickListener(){
                 @Override public void onClick(View v) {
                     listener.onItemClick(music);

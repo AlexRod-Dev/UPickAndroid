@@ -100,33 +100,6 @@
                 app:layout_constraintStart_toEndOf="@+id/img_track"
                 app:layout_constraintTop_toBottomOf="@+id/lb_artist_name">
 
-                <ImageView
-                    android:id="@+id/btn_count_up"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    app:srcCompat="@drawable/ic_icon_up" />
-
-                <TextView
-                    android:id="@+id/lb_count_up"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:paddingRight="8dp"
-                    android:text="0" />
-
-                <ImageView
-                    android:id="@+id/btn_count_down"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    app:srcCompat="@drawable/ic_icon_down" />
-
-                <TextView
-                    android:id="@+id/lb_count_down"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="0" />
-
             </LinearLayout>
 
             <ProgressBar

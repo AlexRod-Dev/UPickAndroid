@@ -14,14 +14,14 @@
         android:layout_height="2dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="30dp"
         android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_coord" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_scan" />
 
     <TextView
         android:id="@+id/lb_local"
@@ -40,40 +40,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/txt_localization"
-        android:layout_width="290dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@xml/design_edittext"
-        android:drawableRight="@drawable/ic_location"
-        android:hint=" "
-        android:inputType="textPersonName"
-        android:padding="10dp"
-        android:textColor="@color/colorBackground"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lb_local" />
-
-    <TextView
-        android:id="@+id/txt_coord"
+    <Button
+        android:id="@+id/btn_scan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="TextView"
-        android:textColor="@android:color/white"
+        android:background="@xml/rounded_button"
+        android:text="Scan"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.14"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_localization" />
+        app:layout_constraintTop_toBottomOf="@+id/lb_local" />
 
     <ScrollView
         android:layout_width="0dp"
@@ -84,8 +64,9 @@
         app:layout_constraintTop_toBottomOf="@+id/divider">
 
         <android.support.constraint.ConstraintLayout
+            android:id="@+id/layout_venue"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp">
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/establishment_viewpager"
@@ -115,8 +96,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.179"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider" />
+                />
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
+
+
 
 </android.support.constraint.ConstraintLayout>

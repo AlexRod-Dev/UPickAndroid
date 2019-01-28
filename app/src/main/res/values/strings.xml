@@ -44,6 +44,7 @@ Doner pork loin cow, chicken t-bone pork chop ham hock fatback prosciutto should
     <string name="string_removed_favorites" translatable="false">Music removed from favorites</string>
     <string name="string_queue" translatable="false">Queue</string>
     <string name="string_where_add" translatable="false">Add music where?</string>
+    <string name="string_hint" translatable="false">Trying to establish connection to server</string>
 
 
 

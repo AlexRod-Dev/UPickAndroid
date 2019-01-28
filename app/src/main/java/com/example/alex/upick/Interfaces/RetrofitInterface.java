@@ -47,6 +47,10 @@ public interface RetrofitInterface {
         @GET("queue/{trackid}/{userid}/{venueid}/addtoqueue")
         Call<String> addToQueue(@Path("trackid") String track_id, @Path("userid") int user_id, @Path("venueid") int venue_id,@Header("accept") String accept, @Header("authorization") String auth_key);
 
+        @GET("queue/{id}/{userid}/addvote")
+        Call<String> addvote(@Path("id") int id,@Path("userid") int user_id,@Header("accept") String accept, @Header("authorization") String auth_key);
+
+
         @FormUrlEncoded
         @POST("spotify/refresh")
         Call<ArrayList> getToken(@Field("id") int id, @Header("accept") String accept, @Header("authorization") String auth_key);

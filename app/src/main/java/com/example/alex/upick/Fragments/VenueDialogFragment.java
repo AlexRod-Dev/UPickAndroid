@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.alex.upick.Activities.LoginActivity;
 import com.example.alex.upick.Models.Venue;
 import com.example.alex.upick.R;
 import com.google.gson.Gson;
@@ -35,7 +36,9 @@ public class VenueDialogFragment extends DialogFragment {
         ImageView imgVenue = view.findViewById(R.id.img_venue);
 
         if(!venue.getImagepath().equals("")){
-            Picasso.get().load(venue.getImagepath()).into(imgVenue);
+            Picasso.get().load(LoginActivity.serverIp +"/frontend/web/img/venue_logos/"+venue.getImagepath()).into(imgVenue);
+        }else{
+            Picasso.get().load(LoginActivity.serverIp +"/frontend/web/img/venue_logos/not_available.png").into(imgVenue);
         }
 
         lbNome.setText(name);
