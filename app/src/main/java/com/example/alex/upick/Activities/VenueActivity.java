@@ -305,24 +305,10 @@ public class VenueActivity extends AppCompatActivity {
                                             @Override
                                             public void onItemClick(Music music) {
 
-                                                Call<String> mService = myApi.addvote(queue_id,user_id, "application/json", LoginActivity.auth_key);
-                                                mService.enqueue(new Callback<String>() {
-
-
-                                                    @Override
-                                                    public void onResponse(Call<String> call, Response<String> response) {
-                                                        Toast.makeText(VenueActivity.this, response.body(), Toast.LENGTH_SHORT).show();
-                                                    }
-
-                                                    @Override
-                                                    public void onFailure(Call<String> call, Throwable t) {
-
-                                                    }
-                                                });
 
 
 
-                                             /*   musicl = music;
+                                               musicl = music;
                                                 if(operations.existFav(musicl.getTrack_id())){
                                                         Toast.makeText(getApplicationContext(),R.string.string_already_favorites,Toast.LENGTH_LONG).show();
                                                 }else{
@@ -355,11 +341,27 @@ public class VenueActivity extends AppCompatActivity {
                                                             .show();
 
 
-                                                }*/
+                                                }
 
 
                                             }
                                         }));
+
+
+                                          /*      Call<String> mService = myApi.addvote(queue_id,user_id, "application/json", LoginActivity.auth_key);
+                                                mService.enqueue(new Callback<String>() {
+
+
+                                                    @Override
+                                                    public void onResponse(Call<String> call, Response<String> response) {
+                                                        Toast.makeText(VenueActivity.this, response.body(), Toast.LENGTH_SHORT).show();
+                                                    }
+
+                                                    @Override
+                                                    public void onFailure(Call<String> call, Throwable t) {
+
+                                                    }
+                                                });*/
 
 
                                         }
